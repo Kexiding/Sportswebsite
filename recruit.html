@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-i18n-title="recruit.hero.title">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人员招募 | 国际健身体育产业博览会</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .recruit-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+        .recruit-tab { padding: 14px 32px; font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--color-text-secondary); background: var(--color-white); border: 2px solid var(--color-card-border); cursor: pointer; transition: all var(--transition-fast); border-radius: 10px; }
+        .recruit-tab.active { background: var(--color-primary-blue); color: var(--color-white); border-color: var(--color-primary-blue); box-shadow: var(--shadow-glow-blue); }
+        .recruit-tab:hover:not(.active) { border-color: var(--color-primary-blue); color: var(--color-primary-blue); }
+        .recruit-section { display: none; animation: scale-in 0.4s ease; }
+        .recruit-section.active { display: block; }
+        .form-section:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loading">
+        <div class="loading-logo">IFSIE</div>
+        <div class="loading-bar">
+            <div class="loading-bar-fill"></div>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">IFSIE</div>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="index.html" data-i18n="nav.home">首页</a>
+                    <a href="index.html#highlights" data-i18n="nav.highlights">展区</a>
+                    <a href="schedule.html" data-i18n="nav.schedule">日程</a>
+                    <a href="index.html#forum" data-i18n="nav.forum">论坛</a>
+                    <a href="brands.html" data-i18n="nav.brands">品牌</a>
+                    <a href="index.html#news" data-i18n="nav.news">资讯</a>
+                    <a href="index.html#guide" data-i18n="nav.guide">指南</a>
+                </div>
+                <div class="nav-cta">
+                    <a href="register.html" class="btn btn-secondary" data-i18n="nav.register">观展预约</a>
+                    <a href="recruit.html" class="btn btn-accent active" data-i18n="nav.recruitBtn">人员招募</a>
+                </div>
+            </nav>
+            <div class="burger-menu">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section" style="min-height: 50vh;">
+        <div class="hero-background">
+            <div class="hero-grid"></div>
+            <div class="hero-scan-line"></div>
+            <div class="hero-glow"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge" data-i18n="recruit.hero.badge">RECRUITMENT</div>
+            <h1 class="hero-title" data-i18n="recruit.hero.title">人员招募 <span data-i18n="recruit.hero.title.span">加入我们</span></h1>
+            <p class="hero-subtitle" data-i18n="recruit.hero.subtitle">成为国际健身体育产业博览会的一员，共同打造行业盛会</p>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="section-header">
+            <div class="section-label" data-i18n="recruit.section.label">JOIN US</div>
+            <h2 class="section-title" data-i18n="recruit.section.title">招募 <span data-i18n="recruit.section.title.span">报名</span></h2>
+            <p class="section-description" data-i18n="recruit.section.desc">选择您要报名的类型，填写信息完成申请</p>
+        </div>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            <!-- 招募类型切换 -->
+            <div class="recruit-tabs">
+                <button class="recruit-tab active" data-target="staff" data-i18n="recruit.tab.staff">工作人员</button>
+                <button class="recruit-tab" data-target="volunteer" data-i18n="recruit.tab.volunteer">志愿者</button>
+                <button class="recruit-tab" data-target="guest" data-i18n="recruit.tab.guest">嘉宾</button>
+            </div>
+
+            <!-- ==================== 工作人员报名 ==================== -->
+            <div class="recruit-section active" id="section-staff">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2 data-i18n="recruit.staff.title">工作人员报名</h2>
+                        <p data-i18n="recruit.staff.desc">填写信息，申请成为展会工作人员</p>
+                    </div>
+                    <form id="staff-form">
+                        <div class="form-section">
+                            <h3 class="form-section-title"><i class="fas fa-user"></i> <span data-i18n="recruit.section.basic">基本信息</span></h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.name">姓名 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" name="name" class="form-control" required placeholder="请输入姓名" maxlength="50" data-i18n-placeholder="recruit.placeholder.name">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.phone">手机号 <span style="color: var(--color-green);">*</span></label>
+                                <input type="tel" name="phone" class="form-control" required placeholder="请输入手机号码" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'')" data-i18n-placeholder="recruit.placeholder.phone">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.email">邮箱</label>
+                                <input type="email" name="email" class="form-control" placeholder="请输入邮箱" maxlength="200" data-i18n-placeholder="recruit.placeholder.email">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.idCard">身份证号</label>
+                                <input type="text" name="idCard" class="form-control" placeholder="请输入身份证号" maxlength="18" data-i18n-placeholder="recruit.placeholder.idCard">
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.detail"><i class="fas fa-briefcase"></i> 工作信息</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.department">所属部门</label>
+                                <input type="text" name="department" class="form-control" placeholder="请输入所属部门" maxlength="100" data-i18n-placeholder="recruit.placeholder.department">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.position">职务</label>
+                                <input type="text" name="position" class="form-control" placeholder="请输入职务" maxlength="100" data-i18n-placeholder="recruit.placeholder.position">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.workType">工作类型</label>
+                                <select name="workType" class="form-control">
+                                    <option value="" data-i18n="recruit.placeholder.workType">请选择工作类型</option>
+                                    <option value="安保" data-i18n="recruit.option.security">安保</option>
+                                    <option value="接待" data-i18n="recruit.option.reception">接待</option>
+                                    <option value="布展" data-i18n="recruit.option.exhibition">布展</option>
+                                    <option value="后勤" data-i18n="recruit.option.logistics">后勤</option>
+                                    <option value="其他" data-i18n="recruit.option.other">其他</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.workExperience">相关工作经验</label>
+                                <textarea name="workExperience" class="form-control" placeholder="请描述相关工作经验" maxlength="1000"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.contact"><i class="fas fa-phone-alt"></i> 紧急联系人</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.emergencyContact">紧急联系人</label>
+                                <input type="text" name="emergencyContact" class="form-control" placeholder="请输入紧急联系人姓名" maxlength="100" data-i18n-placeholder="recruit.placeholder.emergencyContact">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.emergencyPhone">紧急联系电话</label>
+                                <input type="tel" name="emergencyPhone" class="form-control" placeholder="请输入紧急联系电话" maxlength="20" data-i18n-placeholder="recruit.placeholder.emergencyPhone">
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title"><i class="fas fa-comment"></i> <span data-i18n="recruit.section.other">其他信息</span></h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.remark">备注</label>
+                                <textarea name="remark" class="form-control" placeholder="其他需要说明的信息" maxlength="500" data-i18n-placeholder="recruit.placeholder.remark"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary" data-i18n="recruit.submit">提交申请</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ==================== 志愿者报名 ==================== -->
+            <div class="recruit-section" id="section-volunteer">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2 data-i18n="recruit.volunteer.title">志愿者报名</h2>
+                        <p data-i18n="recruit.volunteer.desc">加入志愿者团队，为展会贡献力量</p>
+                    </div>
+                    <form id="volunteer-form">
+                        <div class="form-section">
+                            <h3 class="form-section-title"><i class="fas fa-user"></i> <span data-i18n="recruit.section.basic">基本信息</span></h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.name">姓名 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" name="name" class="form-control" required placeholder="请输入姓名" maxlength="50" data-i18n-placeholder="recruit.placeholder.name">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.phone">手机号 <span style="color: var(--color-green);">*</span></label>
+                                <input type="tel" name="phone" class="form-control" required placeholder="请输入手机号码" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'')" data-i18n-placeholder="recruit.placeholder.phone">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.email">邮箱</label>
+                                <input type="email" name="email" class="form-control" placeholder="请输入邮箱" maxlength="200" data-i18n-placeholder="recruit.placeholder.email">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.idCard">身份证号</label>
+                                <input type="text" name="idCard" class="form-control" placeholder="请输入身份证号" maxlength="18" data-i18n-placeholder="recruit.placeholder.idCard">
+                            </div>
+                            <div class="form-group" style="display: flex; gap: 15px;">
+                                <div style="flex: 1;">
+                                    <label data-i18n="recruit.label.gender">性别</label>
+                                    <select name="gender" class="form-control">
+                                        <option value="" data-i18n="recruit.placeholder.selectDefault">请选择</option>
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                </div>
+                                <div style="flex: 1;">
+                                    <label data-i18n="recruit.label.age">年龄</label>
+                                    <input type="number" name="age" class="form-control" placeholder="年龄" min="16" max="65">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.education"><i class="fas fa-graduation-cap"></i> 教育/背景</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.school">学校/单位</label>
+                                <input type="text" name="school" class="form-control" placeholder="请输入所在学校或工作单位" maxlength="200" data-i18n-placeholder="recruit.placeholder.school">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.major">专业/特长</label>
+                                <input type="text" name="major" class="form-control" placeholder="请输入专业或特长" maxlength="100" data-i18n-placeholder="recruit.placeholder.major">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.education">学历</label>
+                                <select name="education" class="form-control">
+                                    <option value="" data-i18n="recruit.placeholder.education">请选择学历</option>
+                                    <option value="高中及以下">高中及以下</option>
+                                    <option value="大专">大专</option>
+                                    <option value="本科">本科</option>
+                                    <option value="硕士及以上">硕士及以上</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.service"><i class="fas fa-hand-holding-heart"></i> 服务意向</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.availableDates">可服务日期</label>
+                                <div class="form-check-group">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="availableDates" value="10月17日" class="form-check-input">
+                                        <span>10月17日</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="availableDates" value="10月18日" class="form-check-input">
+                                        <span>10月18日</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="availableDates" value="10月19日" class="form-check-input">
+                                        <span>10月19日</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.serviceType">意向服务类型</label>
+                                <div class="form-check-group">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="serviceType" value="引导接待" class="form-check-input">
+                                        <span data-i18n="recruit.service.guide">引导接待</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="serviceType" value="翻译服务" class="form-check-input">
+                                        <span data-i18n="recruit.service.translation">翻译服务</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="serviceType" value="后勤保障" class="form-check-input">
+                                        <span data-i18n="recruit.service.logisticsSupport">后勤保障</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="serviceType" value="秩序维护" class="form-check-input">
+                                        <span data-i18n="recruit.service.order">秩序维护</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="serviceType" value="其他" class="form-check-input">
+                                        <span data-i18n="recruit.service.other">其他</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.languages">语言能力</label>
+                                <input type="text" name="languages" class="form-control" placeholder="如：英语CET6、日语N2" maxlength="200">
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.supplement"><i class="fas fa-file-alt"></i> 补充信息</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.volunteerExperience">志愿服务经历</label>
+                                <textarea name="volunteerExperience" class="form-control" placeholder="请描述您的志愿服务经历" maxlength="1000"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.selfIntro">自我介绍</label>
+                                <textarea name="selfIntro" class="form-control" placeholder="简单介绍一下自己" maxlength="500" data-i18n-placeholder="recruit.placeholder.selfIntro"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.contact"><i class="fas fa-phone-alt"></i> 紧急联系人</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.emergencyContact">紧急联系人</label>
+                                <input type="text" name="emergencyContact" class="form-control" placeholder="请输入紧急联系人姓名" maxlength="100" data-i18n-placeholder="recruit.placeholder.emergencyContact">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.emergencyPhone">紧急联系电话</label>
+                                <input type="tel" name="emergencyPhone" class="form-control" placeholder="请输入紧急联系电话" maxlength="20" data-i18n-placeholder="recruit.placeholder.emergencyPhone">
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title"><i class="fas fa-comment"></i> <span data-i18n="recruit.section.other">其他信息</span></h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.remark">备注</label>
+                                <textarea name="remark" class="form-control" placeholder="其他需要说明的信息" maxlength="500" data-i18n-placeholder="recruit.placeholder.remark"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary" data-i18n="recruit.submit">提交申请</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ==================== 嘉宾报名 ==================== -->
+            <div class="recruit-section" id="section-guest">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2 data-i18n="recruit.guest.title">嘉宾报名</h2>
+                        <p data-i18n="recruit.guest.desc">申请成为展会嘉宾，共话行业未来</p>
+                    </div>
+                    <form id="guest-form">
+                        <div class="form-section">
+                            <h3 class="form-section-title"><i class="fas fa-user"></i> <span data-i18n="recruit.section.basic">基本信息</span></h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.name">姓名 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" name="name" class="form-control" required placeholder="请输入姓名" maxlength="50" data-i18n-placeholder="recruit.placeholder.name">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.phone">手机号 <span style="color: var(--color-green);">*</span></label>
+                                <input type="tel" name="phone" class="form-control" required placeholder="请输入手机号码" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'')" data-i18n-placeholder="recruit.placeholder.phone">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.email">邮箱 <span style="color: var(--color-green);">*</span></label>
+                                <input type="email" name="email" class="form-control" required placeholder="请输入邮箱" maxlength="200" data-i18n-placeholder="recruit.placeholder.email">
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.organization"><i class="fas fa-building"></i> 单位信息</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.company">所在单位 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" name="company" class="form-control" required placeholder="请输入所在单位" maxlength="200" data-i18n-placeholder="recruit.placeholder.company">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.position">职务/头衔</label>
+                                <input type="text" name="position" class="form-control" placeholder="请输入职务或头衔" maxlength="100" data-i18n-placeholder="recruit.placeholder.position">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.title">嘉宾称号</label>
+                                <input type="text" name="title" class="form-control" placeholder="如：行业专家、教授、CEO" maxlength="200" data-i18n-placeholder="recruit.placeholder.title">
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.bio"><i class="fas fa-user-edit"></i> 个人简介</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.introduction">个人简介</label>
+                                <textarea name="introduction" class="form-control" placeholder="请简要介绍个人经历和成就" maxlength="2000" style="min-height: 120px;" data-i18n-placeholder="recruit.placeholder.introduction"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.settings"><i class="fas fa-cog"></i> 其他设置</h3>
+                            <div class="form-group">
+                                <label class="form-check-label" style="display: inline-flex; padding: 10px 18px;">
+                                    <input type="checkbox" name="isPublic" value="1" checked class="form-check-input">
+                                    <span data-i18n="recruit.label.isPublic">同意在官网公开展示个人信息</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.remark">备注</label>
+                                <textarea name="remark" class="form-control" placeholder="其他需要说明的信息" maxlength="500" data-i18n-placeholder="recruit.placeholder.remark"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-accent" data-i18n="recruit.submit">提交申请</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon"></div>
+                        <div class="logo-text">SPORT <span>EXPO</span></div>
+                    </div>
+                    <p data-i18n="footer.desc">国际健身体育产业博览会是国际规模最大、最具影响力的健身产业专业展会，致力于打造健身器材、运动装备、智慧体育全产业链商贸平台。</p>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item"><i class="fas fa-phone"></i> <span data-i18n="footer.phone">022-83532300</span></div>
+                        <div class="footer-contact-item"><i class="fas fa-envelope"></i> <span data-i18n="footer.email">info@ifsie.com</span></div>
+                        <div class="footer-contact-item"><i class="fas fa-map-marker"></i> <span data-i18n="footer.address">天津市津南区咸水沽国展大厦B座1002</span></div>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.title1">展会信息</h4>
+                    <a href="index.html" data-i18n="footer.link.overview">展会概况</a>
+                    <a href="index.html#highlights" data-i18n="footer.link.planning">展区规划</a>
+                    <a href="schedule.html" data-i18n="footer.link.schedule">展会日程</a>
+                    <a href="index.html#forum" data-i18n="footer.link.events">同期活动</a>
+                    <a href="brands.html" data-i18n="footer.link.brands">参展品牌</a>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.title2">参展服务</h4>
+                    <a href="register.html#exhibit" data-i18n="footer.link.booth">展位申请</a>
+                    <a href="cooperation.html#sponsor" data-i18n="footer.link.sponsor">赞助合作</a>
+                    <a href="cooperation.html#advertise" data-i18n="footer.link.advertise">广告投放</a>
+                    <a href="cooperation.html#media" data-i18n="footer.link.media">媒体合作</a>
+                    <a href="cooperation.html#download" data-i18n="footer.link.download">资料下载</a>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.title4">加入我们</h4>
+                    <a href="recruit.html#section-staff" data-i18n="recruit.tab.staff">工作人员</a>
+                    <a href="recruit.html#section-volunteer" data-i18n="recruit.tab.volunteer">志愿者</a>
+                    <a href="recruit.html#section-guest" data-i18n="recruit.tab.guest">嘉宾</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright" data-i18n="footer.copyright">© 2026 国际健身体育产业博览会 版权所有 | 京ICP备xxxxxxxx号</div>
+                <div class="footer-partners">
+                    <span data-i18n="footer.hostOrg">主办单位</span>
+                    <span data-i18n="footer.coOrg">协办单位</span>
+                    <span data-i18n="footer.supportOrg">支持单位</span>
+                </div>
+                <div style="text-align:center;margin-top:12px;">
+                    <a href="admin.html" style="color:var(--color-text-muted);font-size:12px;opacity:0.5;text-decoration:none;">后台管理</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    <script src="i18n.js"></script>
+</body>
+</html>

@@ -1,19 +1,20 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const path = require('path');
 
 const visitorRoutes = require('./routes/visitor');
 const exhibitorRoutes = require('./routes/exhibitor');
+const registrationRoutes = require('./routes/registration');
 const adminRoutes = require('./routes/admin');
+const contentRoutes = require('./routes/content');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 中间件
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // 静态文件 - 直接托管项目根目录的 HTML
 app.use(express.static(path.join(__dirname, '..')));
@@ -21,7 +22,9 @@ app.use(express.static(path.join(__dirname, '..')));
 // 路由
 app.use('/api/visitor', visitorRoutes);
 app.use('/api/exhibitor', exhibitorRoutes);
+app.use('/api/registration', registrationRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api', contentRoutes);
 
 // 健康检查
 app.get('/api/health', (req, res) => {

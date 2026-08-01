@@ -84,6 +84,52 @@ if (!document.getElementById(loadingStyleId)) {
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
         .toast.toast-error { background: #e53935; color: #fff; }
         .toast.toast-success { background: var(--color-green, #00b894); color: #fff; }
+        /* 合同下载模态框 */
+        .contract-modal-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+            z-index: 100001; align-items: center; justify-content: center;
+            backdrop-filter: blur(3px);
+        }
+        .contract-modal-overlay.show { display: flex; }
+        .contract-modal-box {
+            background: #fff; border-radius: 16px; padding: 36px 40px;
+            max-width: 420px; width: 90%; text-align: center;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+            animation: scale-in 0.3s ease;
+        }
+        .contract-modal-icon {
+            width: 64px; height: 64px; margin: 0 auto 16px;
+            background: var(--color-green-light, #e6f9f5);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        }
+        .contract-modal-icon i {
+            font-size: 30px; color: var(--color-green, #00b894);
+        }
+        .contract-modal-title {
+            font-family: var(--font-display, 'Orbitron', sans-serif);
+            font-size: 1.25rem; font-weight: 700; color: #1a1a2e;
+            margin-bottom: 12px;
+        }
+        .contract-modal-desc {
+            font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 28px;
+        }
+        .contract-modal-actions {
+            display: flex; gap: 12px; justify-content: center;
+        }
+        .contract-modal-btn {
+            padding: 10px 32px; border-radius: 8px; border: none;
+            font-size: 15px; cursor: pointer; font-weight: 600;
+            transition: all 0.2s; min-width: 100px;
+        }
+        .contract-modal-btn.no {
+            background: #f0f0f0; color: #666;
+        }
+        .contract-modal-btn.no:hover { background: #e0e0e0; }
+        .contract-modal-btn.yes {
+            background: var(--color-green, #00b894); color: #fff;
+        }
+        .contract-modal-btn.yes:hover { opacity: 0.85; }
+        .contract-modal-btn.yes i { margin-right: 6px; }
     `;
     document.head.appendChild(style);
 }
@@ -287,6 +333,53 @@ function showConfirm(msg) {
     });
 }
 
+// ========== 参展合同下载模态框 ==========
+function showContractDownloadModal() {
+    const existing = document.querySelector('.contract-modal-overlay');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'contract-modal-overlay';
+    overlay.innerHTML = `
+        <div class="contract-modal-box">
+            <div class="contract-modal-icon">
+                <i class="fas fa-file-word"></i>
+            </div>
+            <div class="contract-modal-title">参展合同模板</div>
+            <div class="contract-modal-desc">
+                恭喜您已成功提交参展报名信息！<br>
+                是否立即下载参展合同模板？
+            </div>
+            <div class="contract-modal-actions">
+                <button class="contract-modal-btn no" id="contract-no">否</button>
+                <button class="contract-modal-btn yes" id="contract-yes"><i class="fas fa-download"></i> 是，下载合同</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+    setTimeout(() => overlay.classList.add('show'), 10);
+
+    overlay.querySelector('#contract-no').addEventListener('click', () => {
+        overlay.classList.remove('show');
+        setTimeout(() => overlay.remove(), 300);
+    });
+
+    overlay.querySelector('#contract-yes').addEventListener('click', () => {
+        // 触发下载
+        const downloadUrl = `${API_BASE_URL}/exhibitor/contract`;
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = '2026国际健身体育产业博览会参展合同.doc';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // 关闭模态框
+        overlay.classList.remove('show');
+        setTimeout(() => overlay.remove(), 300);
+    });
+}
+
 // ========== 提交处理 ==========
 async function handleFormSubmit(form, type) {
     const formId = form.id;
@@ -337,6 +430,10 @@ async function handleFormSubmit(form, type) {
             form.querySelectorAll('.form-control').forEach(el => {
                 el.classList.remove('success', 'error');
             });
+            // 参展报名成功后，弹出合同下载提示
+            if (type === 'exhibit') {
+                setTimeout(showContractDownloadModal, 800);
+            }
         } else {
             showError(result.msg || '提交失败，请稍后重试');
         }
@@ -371,6 +468,163 @@ function initRegistrationForms() {
     }
 }
 
+// ========== 招募/人员报名 表单处理 ==========
+const RECRUIT_VALIDATORS = {
+  ...VALIDATORS,
+  idCard: {
+    test: v => !v || /^[1-9]\d{5}(19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[\dXx]$/.test(v.trim()),
+    msg: '请输入有效身份证号'
+  },
+  workType: { test: v => true, msg: '' },
+  workExperience: { test: v => true, msg: '' },
+  emergencyContact: { test: v => true, msg: '' },
+  emergencyPhone: { test: v => true, msg: '' },
+  department: { test: v => true, msg: '' },
+  gender: { test: v => true, msg: '' },
+  age: { test: v => !v || (Number(v) >= 16 && Number(v) <= 65), msg: '年龄范围16-65岁' },
+  school: { test: v => true, msg: '' },
+  major: { test: v => true, msg: '' },
+  education: { test: v => true, msg: '' },
+  availableDates: { test: v => true, msg: '' },
+  languages: { test: v => true, msg: '' },
+  volunteerExperience: { test: v => true, msg: '' },
+  selfIntro: { test: v => true, msg: '' },
+  company: {
+    test: v => v.trim().length > 0,
+    msg: '请输入所在单位'
+  },
+  position: { test: v => true, msg: '' },
+  title: { test: v => true, msg: '' },
+  guestType: { test: v => true, msg: '' },
+  topic: { test: v => true, msg: '' },
+  introduction: { test: v => true, msg: '' },
+  isPublic: { test: v => true, msg: '' },
+  remark: { test: v => true, msg: '' }
+};
+
+const API_ROUTE_MAP = {
+  staff: '/registration/staff/apply',
+  volunteer: '/registration/volunteer/apply',
+  guest: '/registration/guest/apply'
+};
+
+async function handleRecruitFormSubmit(form, type) {
+  const formId = form.id;
+  if (SUBMITTING[formId]) return;
+
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => {
+    const v = typeof value === 'string' ? value.trim() : value;
+    if (key === 'serviceType' || key === 'availableDates') {
+      data[key] = data[key] || [];
+      data[key].push(v);
+    } else if (key === 'isPublic') {
+      data[key] = 1;
+    } else {
+      data[key] = v;
+    }
+  });
+
+  // 必填字段验证
+  const requiredFields = form.querySelectorAll('[required]');
+  let firstError = null;
+  requiredFields.forEach(input => {
+    if (!input.value.trim()) {
+      input.classList.add('error');
+      if (!firstError) firstError = input;
+    } else {
+      input.classList.remove('error');
+    }
+  });
+  if (firstError) return showError('请填写所有必填项');
+
+  const confirmed = await showConfirm(`确认提交${type === 'staff' ? '工作人员' : type === 'volunteer' ? '志愿者' : '嘉宾'}报名？`);
+  if (!confirmed) return;
+
+  SUBMITTING[formId] = true;
+  showLoading();
+
+  try {
+    const response = await fetch(`${API_BASE_URL}${API_ROUTE_MAP[type]}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.code === 1) {
+      showSuccess(result.msg);
+      form.reset();
+      form.querySelectorAll('.form-control').forEach(el => el.classList.remove('success', 'error'));
+    } else {
+      showError(result.msg || '提交失败，请稍后重试');
+    }
+  } catch (error) {
+    console.error('Form submission error:', error);
+    showError('网络异常，请检查网络后重试');
+  } finally {
+    hideLoading();
+    delete SUBMITTING[formId];
+  }
+}
+
+function initRecruitForms() {
+  const recruitForms = [
+    { id: 'staff-form', type: 'staff' },
+    { id: 'volunteer-form', type: 'volunteer' },
+    { id: 'guest-form', type: 'guest' }
+  ];
+
+  recruitForms.forEach(({ id, type }) => {
+    const form = document.getElementById(id);
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await handleRecruitFormSubmit(form, type);
+      });
+    }
+  });
+
+  // 招募类型切换
+  const tabs = document.querySelectorAll('.recruit-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-target');
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.recruit-section').forEach(s => s.classList.remove('active'));
+      const section = document.getElementById(`section-${target}`);
+      if (section) section.classList.add('active');
+    });
+  });
+}
+
+// ========== register.html 嘉宾表单处理 ==========
+function initRegisterGuestForm() {
+  const guestForm = document.getElementById('register-guest-form');
+  if (guestForm) {
+    guestForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await handleRecruitFormSubmit(guestForm, 'guest');
+    });
+  }
+
+  // register.html Tab 切换 (.register-tab / .register-section)
+  const registerTabs = document.querySelectorAll('.register-tab');
+  registerTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-target');
+      registerTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.register-section').forEach(s => s.classList.remove('active'));
+      const section = document.getElementById(target);
+      if (section) section.classList.add('active');
+    });
+  });
+}
+
 // ========== 原有功能保持不变 ==========
 document.addEventListener('DOMContentLoaded', () => {
     initLoading();
@@ -378,6 +632,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initScheduleTabs();
     initSmoothScroll();
     initRegistrationForms();
+    initRecruitForms();
+    initRegisterGuestForm();
 });
 
 function initLoading() {
@@ -442,7 +698,8 @@ async function fetchExhibitionData() {
     try {
         const response = await fetch(`${API_BASE_URL}/exhibition`);
         if (!response.ok) throw new Error('Failed to fetch data');
-        return await response.json();
+        const result = await response.json();
+        return result && result.code === 1 ? result.data : null;
     } catch (error) {
         console.error('API fetch error:', error);
         return null;
@@ -454,7 +711,8 @@ async function fetchSchedule(day = null) {
         const endpoint = day ? `/schedule?day=${day}` : '/schedule';
         const response = await fetch(`${API_BASE_URL}${endpoint}`);
         if (!response.ok) throw new Error('Failed to fetch schedule');
-        return await response.json();
+        const result = await response.json();
+        return result && result.code === 1 ? result.data : null;
     } catch (error) {
         console.error('API fetch error:', error);
         return null;
@@ -465,7 +723,8 @@ async function fetchBrands() {
     try {
         const response = await fetch(`${API_BASE_URL}/brands`);
         if (!response.ok) throw new Error('Failed to fetch brands');
-        return await response.json();
+        const result = await response.json();
+        return result && result.code === 1 ? result.data : null;
     } catch (error) {
         console.error('API fetch error:', error);
         return null;
@@ -476,7 +735,8 @@ async function fetchNews() {
     try {
         const response = await fetch(`${API_BASE_URL}/news`);
         if (!response.ok) throw new Error('Failed to fetch news');
-        return await response.json();
+        const result = await response.json();
+        return result && result.code === 1 ? result.data : null;
     } catch (error) {
         console.error('API fetch error:', error);
         return null;
@@ -485,7 +745,7 @@ async function fetchNews() {
 
 function updateHeroStats(data) {
     if (!data) return;
-    const statValues = document.querySelectorAll('.info-value');
+    const statValues = document.querySelectorAll('.hero-stat-value');
     const labels = ['exhibitors', 'visitors', 'area', 'forums'];
     statValues.forEach((el, index) => {
         const key = labels[index];
@@ -499,14 +759,14 @@ function renderScheduleItems(containerId, items) {
     container.innerHTML = items.map(item => `
         <div class="schedule-item">
             <div class="schedule-time">
-                <div class="schedule-time-value">${item.time || ''}</div>
-                <div class="schedule-time-period">${item.period || ''}</div>
+                <div class="schedule-time-value">${escapeHtml(item.time || '')}</div>
+                <div class="schedule-time-period" ${item.periodI18n ? `data-i18n="${item.periodI18n}"` : ''}>${escapeHtml(item.period || '')}</div>
             </div>
             <div class="schedule-content">
-                <h4 class="schedule-title">${item.title || ''}</h4>
-                <div class="schedule-speaker">${item.speaker || ''}</div>
-                <div class="schedule-location">${item.location || ''}</div>
-                <span class="schedule-category">${item.category || ''}</span>
+                <h4 class="schedule-title" ${item.titleI18n ? `data-i18n="${item.titleI18n}"` : ''}>${escapeHtml(item.title || '')}</h4>
+                <div class="schedule-speaker" ${item.speakerI18n ? `data-i18n="${item.speakerI18n}"` : ''}>${escapeHtml(item.speaker || '')}</div>
+                <div class="schedule-location" ${item.locationI18n ? `data-i18n="${item.locationI18n}"` : ''}>${escapeHtml(item.location || '')}</div>
+                <span class="schedule-category" ${item.categoryI18n ? `data-i18n="${item.categoryI18n}"` : ''}>${escapeHtml(item.category || '')}</span>
             </div>
         </div>
     `).join('');
@@ -517,8 +777,8 @@ function renderBrands(containerId, brands) {
     if (!container || !brands) return;
     container.innerHTML = brands.map(brand => `
         <div class="brand-item">
-            <div class="brand-logo">${brand.shortName || brand.name.charAt(0)}</div>
-            <div class="brand-name">${brand.name || ''}</div>
+            <div class="brand-logo">${escapeHtml(brand.shortName || (brand.name || '').charAt(0))}</div>
+            <div class="brand-name">${escapeHtml(brand.name || '')}</div>
         </div>
     `).join('');
 }
@@ -529,13 +789,13 @@ function renderNews(containerId, news) {
     container.innerHTML = news.map(item => `
         <div class="news-card">
             <div class="news-image">
-                <div class="news-image-icon"><i class="fas fa-newspaper"></i></div>
+                <div class="news-image-text">NEWS</div>
             </div>
             <div class="news-content">
-                <div class="news-date">${item.date || ''}</div>
-                <h3 class="news-title">${item.title || ''}</h3>
-                <p class="news-excerpt">${item.excerpt || ''}</p>
-                <a href="${item.url || '#'}" class="news-readmore">阅读全文</a>
+                <div class="news-date">${escapeHtml(item.date || '')}</div>
+                <h3 class="news-title" ${item.titleI18n ? `data-i18n="${item.titleI18n}"` : ''}>${escapeHtml(item.title || '')}</h3>
+                <p class="news-excerpt" ${item.excerptI18n ? `data-i18n="${item.excerptI18n}"` : ''}>${escapeHtml(item.excerpt || '')}</p>
+                <a href="${escapeHtml(item.url || '#')}" class="news-readmore" data-i18n="news.readmore">阅读全文</a>
             </div>
         </div>
     `).join('');
@@ -556,6 +816,85 @@ async function loadPageData() {
     }
     if (brands) renderBrands('brands-container', brands);
     if (news) renderNews('news-container', news.slice(0, 3));
+    // 动态渲染的内容重新应用多语言翻译
+    if (window.i18n && typeof window.i18n.translate === 'function') {
+        window.i18n.translate();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => { loadPageData(); });
+
+// ========== 返回顶部按钮 ==========
+(function initBackToTop() {
+    const btn = document.createElement('div');
+    btn.id = 'back-to-top';
+    btn.title = '返回顶部';
+    btn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    document.body.appendChild(btn);
+
+    // 注入样式
+    if (!document.getElementById('back-to-top-style')) {
+        const style = document.createElement('style');
+        style.id = 'back-to-top-style';
+        style.textContent = `
+            #back-to-top {
+                position: fixed; right: 28px; bottom: 28px; z-index: 999;
+                width: 44px; height: 44px; border-radius: 50%;
+                background: var(--color-gradient-blue-green, linear-gradient(135deg, #1a73e8, #00b894));
+                color: #fff; display: flex; align-items: center; justify-content: center;
+                font-size: 16px; cursor: pointer; opacity: 0; pointer-events: none;
+                transform: translateY(12px); transition: all var(--transition-normal, 0.4s ease);
+                box-shadow: 0 6px 20px rgba(26, 115, 232, 0.35);
+            }
+            #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+            #back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(0, 184, 148, 0.4); }
+            @media (max-width: 768px) { #back-to-top { right: 16px; bottom: 16px; width: 40px; height: 40px; } }
+        `;
+        document.head.appendChild(style);
+    }
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+        btn.classList.toggle('show', window.scrollY > 400);
+    }, { passive: true });
+})();
+
+// ========== FAQ 手风琴 ==========
+(function initFaqAccordion() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    if (!faqItems.length) return;
+    if (!document.getElementById('faq-accordion-style')) {
+        const style = document.createElement('style');
+        style.id = 'faq-accordion-style';
+        style.textContent = `
+            .faq-item { cursor: pointer; transition: box-shadow var(--transition-fast, 0.2s ease); }
+            .faq-item:hover { box-shadow: var(--shadow-glow-blue, 0 0 20px rgba(26,115,232,0.2)); }
+            .faq-item .faq-q { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+            .faq-item .faq-q .faq-icon { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--color-primary-blue-light, #e3f2fd); color: var(--color-primary-blue, #1a73e8); display: flex; align-items: center; justify-content: center; font-size: 12px; transition: transform var(--transition-normal, 0.4s ease); }
+            .faq-item .faq-a { max-height: 0; overflow: hidden; transition: max-height var(--transition-normal, 0.4s ease), padding var(--transition-normal, 0.4s ease), margin var(--transition-normal, 0.4s ease); margin: 0; padding: 0; }
+            .faq-item.open { border-color: var(--color-primary-blue, #1a73e8); }
+            .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--color-primary-blue, #1a73e8); color: #fff; }
+            .faq-item.open .faq-a { max-height: 400px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--color-card-border, #d5eae8); }
+        `;
+        document.head.appendChild(style);
+    }
+    faqItems.forEach(item => {
+        const q = item.querySelector('h4');
+        const a = item.querySelector('p');
+        if (!q || !a) return;
+        a.classList.add('faq-a');
+        q.classList.add('faq-q');
+        const icon = document.createElement('span');
+        icon.className = 'faq-icon';
+        icon.textContent = '+';
+        q.appendChild(icon);
+        item.addEventListener('click', () => {
+            const isOpen = item.classList.contains('open');
+            faqItems.forEach(other => other.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        });
+    });
+})();

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-i18n-title="admin.login.title">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>后台管理 | 华北体博会</title>
+    <title>后台管理 | 国际健身体育产业博览会</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -175,20 +175,20 @@
     <!-- 登录页 -->
     <div id="login-page">
         <div class="login-box">
-            <h2>NCISHE</h2>
-            <p>后台管理系统</p>
+            <h2 data-i18n="admin.login.title">IFSIE</h2>
+            <p data-i18n="admin.login.subtitle">后台管理系统</p>
             <div class="mb-3">
-                <input type="password" id="admin-password" class="form-control" placeholder="请输入管理员密码" onkeydown="if(event.key==='Enter')login()">
+                <input type="password" id="admin-password" class="form-control" data-i18n="admin.login.placeholder" data-i18n-placeholder placeholder="请输入管理员密码" onkeydown="if(event.key==='Enter')login()">
             </div>
-            <button class="btn btn-primary w-100" onclick="login()">登 录</button>
+            <button class="btn btn-primary w-100" onclick="login()" data-i18n="admin.login.btn">登 录</button>
         </div>
     </div>
 
     <!-- 主面板 -->
     <div id="admin-main" style="display:none;">
         <div class="admin-header">
-            <h1>NCISHE <span>后台</span></h1>
-            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>退出登录</button>
+            <h1>IFSIE <span data-i18n="admin.header.title">后台</span></h1>
+            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i><span data-i18n="admin.header.logout">退出登录</span></button>
         </div>
 
         <div class="admin-container">
@@ -196,23 +196,44 @@
             <div class="stats-row" id="stats-row">
                 <div class="stat-card">
                     <div class="stat-number" id="stat-visitor-total">0</div>
-                    <div class="stat-label">观展预约总数</div>
-                    <div class="stat-sub" id="stat-visitor-today">今日 0</div>
+                    <div class="stat-label" data-i18n="admin.stat.visitor">观展预约总数</div>
+                    <div class="stat-sub" id="stat-visitor-today" data-i18n="admin.stat.today">今日 0</div>
                 </div>
                 <div class="stat-card blue">
                     <div class="stat-number" id="stat-exhibitor-total">0</div>
-                    <div class="stat-label">参展报名总数</div>
-                    <div class="stat-sub" id="stat-exhibitor-today">今日 0</div>
+                    <div class="stat-label" data-i18n="admin.stat.exhibitor">参展报名总数</div>
+                    <div class="stat-sub" id="stat-exhibitor-today" data-i18n="admin.stat.today">今日 0</div>
+                </div>
+                <div class="stat-card" style="border-left:3px solid var(--color-primary-blue);">
+                    <div class="stat-number" id="stat-staff-total">0</div>
+                    <div class="stat-label" data-i18n="admin.stat.staff">工作人员报名</div>
+                </div>
+                <div class="stat-card" style="border-left:3px solid var(--color-green);">
+                    <div class="stat-number" id="stat-volunteer-total">0</div>
+                    <div class="stat-label" data-i18n="admin.stat.volunteer">志愿者报名</div>
+                </div>
+                <div class="stat-card" style="border-left:3px solid #f57f17;">
+                    <div class="stat-number" id="stat-guest-total">0</div>
+                    <div class="stat-label" data-i18n="admin.stat.guest">嘉宾报名</div>
                 </div>
             </div>
 
             <!-- 选项卡 -->
             <div class="admin-tabs">
                 <button class="admin-tab active" data-tab="visitor" onclick="switchTab('visitor')">
-                    <i class="fas fa-users me-1"></i> 观展预约 <span class="badge" id="visitor-tab-count">0</span>
+                    <i class="fas fa-users me-1"></i> <span data-i18n="admin.tab.visitor">观展预约</span> <span class="badge" id="visitor-tab-count">0</span>
                 </button>
                 <button class="admin-tab" data-tab="exhibitor" onclick="switchTab('exhibitor')">
-                    <i class="fas fa-building me-1"></i> 参展报名 <span class="badge" id="exhibitor-tab-count">0</span>
+                    <i class="fas fa-building me-1"></i> <span data-i18n="admin.tab.exhibitor">参展报名</span> <span class="badge" id="exhibitor-tab-count">0</span>
+                </button>
+                <button class="admin-tab" data-tab="staff" onclick="switchTab('staff')">
+                    <i class="fas fa-hard-hat me-1"></i> <span data-i18n="admin.tab.staff">工作人员</span> <span class="badge" id="staff-tab-count">0</span>
+                </button>
+                <button class="admin-tab" data-tab="volunteer" onclick="switchTab('volunteer')">
+                    <i class="fas fa-hands-helping me-1"></i> <span data-i18n="admin.tab.volunteer">志愿者</span> <span class="badge" id="volunteer-tab-count">0</span>
+                </button>
+                <button class="admin-tab" data-tab="guest" onclick="switchTab('guest')">
+                    <i class="fas fa-star me-1"></i> <span data-i18n="admin.tab.guest">嘉宾</span> <span class="badge" id="guest-tab-count">0</span>
                 </button>
             </div>
 
@@ -220,7 +241,7 @@
             <div class="admin-panel active" id="panel-visitor">
                 <div class="toolbar">
                     <div class="search-box">
-                        <input type="text" id="visitor-search" placeholder="搜索姓名/手机/公司..." onkeydown="if(event.key==='Enter')loadVisitor(1)">
+                        <input type="text" id="visitor-search" data-i18n="admin.search.placeholder.visitor" data-i18n-placeholder placeholder="搜索姓名/手机/公司..." onkeydown="if(event.key==='Enter')loadVisitor(1)">
                         <button onclick="loadVisitor(1)"><i class="fas fa-search"></i></button>
                     </div>
                     <span style="color:var(--color-text-muted);font-size:13px;" id="visitor-total-label">共 0 条</span>
@@ -229,12 +250,12 @@
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>ID</th><th>姓名</th><th>手机</th><th>公司</th><th>观展日期</th>
-                            <th>人数</th><th>状态</th><th>提交时间</th><th>操作</th>
+                            <th data-i18n="admin.table.id">ID</th><th data-i18n="admin.table.name">姓名</th><th data-i18n="admin.table.phone">手机</th><th data-i18n="admin.table.company">公司</th><th data-i18n="admin.table.date">观展日期</th>
+                            <th data-i18n="admin.table.people">人数</th><th data-i18n="admin.table.status">状态</th><th data-i18n="admin.table.submitTime">提交时间</th><th data-i18n="admin.table.action">操作</th>
                         </tr>
                     </thead>
                     <tbody id="visitor-table-body">
-                        <tr><td colspan="9" style="text-align:center;color:var(--color-text-muted);padding:40px;">暂无数据</td></tr>
+                        <tr><td colspan="9" style="text-align:center;color:var(--color-text-muted);padding:40px;" data-i18n="admin.table.noData">暂无数据</td></tr>
                     </tbody>
                 </table>
                 <div class="pagination" id="visitor-pagination"></div>
@@ -245,7 +266,7 @@
             <div class="admin-panel" id="panel-exhibitor">
                 <div class="toolbar">
                     <div class="search-box">
-                        <input type="text" id="exhibitor-search" placeholder="搜索姓名/手机/公司..." onkeydown="if(event.key==='Enter')loadExhibitor(1)">
+                        <input type="text" id="exhibitor-search" data-i18n="admin.search.placeholder.exhibitor" data-i18n-placeholder placeholder="搜索姓名/手机/公司..." onkeydown="if(event.key==='Enter')loadExhibitor(1)">
                         <button onclick="loadExhibitor(1)"><i class="fas fa-search"></i></button>
                     </div>
                     <span style="color:var(--color-text-muted);font-size:13px;" id="exhibitor-total-label">共 0 条</span>
@@ -254,15 +275,87 @@
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>ID</th><th>联系人</th><th>手机</th><th>公司</th><th>展位类型</th>
-                            <th>面积</th><th>状态</th><th>提交时间</th><th>操作</th>
+                            <th data-i18n="admin.table.id">ID</th><th data-i18n="admin.table.contactPerson">联系人</th><th data-i18n="admin.table.phone">手机</th><th data-i18n="admin.table.company">公司</th><th data-i18n="admin.table.boothType">展位类型</th>
+                            <th data-i18n="admin.table.area">面积</th><th data-i18n="admin.table.status">状态</th><th data-i18n="admin.table.submitTime">提交时间</th><th data-i18n="admin.table.action">操作</th>
                         </tr>
                     </thead>
                     <tbody id="exhibitor-table-body">
-                        <tr><td colspan="9" style="text-align:center;color:var(--color-text-muted);padding:40px;">暂无数据</td></tr>
+                        <tr><td colspan="9" style="text-align:center;color:var(--color-text-muted);padding:40px;" data-i18n="admin.table.noData">暂无数据</td></tr>
                     </tbody>
                 </table>
                 <div class="pagination" id="exhibitor-pagination"></div>
+                </div>
+            </div>
+
+            <!-- 工作人员 -->
+            <div class="admin-panel" id="panel-staff">
+                <div class="toolbar">
+                    <div class="search-box">
+                        <input type="text" id="staff-search" data-i18n="admin.search.placeholder.staff" data-i18n-placeholder placeholder="搜索姓名/手机..." onkeydown="if(event.key==='Enter')loadStaff(1)">
+                        <button onclick="loadStaff(1)"><i class="fas fa-search"></i></button>
+                    </div>
+                    <span style="color:var(--color-text-muted);font-size:13px;" id="staff-total-label">共 0 条</span>
+                </div>
+                <div class="table-card">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="admin.table.id">ID</th><th data-i18n="admin.table.name">姓名</th><th data-i18n="admin.table.phone">手机</th><th data-i18n="admin.table.department">部门</th><th data-i18n="admin.table.workType">工作类型</th><th data-i18n="admin.table.status">状态</th><th data-i18n="admin.table.submitTime">提交时间</th><th data-i18n="admin.table.action">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="staff-table-body">
+                        <tr><td colspan="8" style="text-align:center;color:var(--color-text-muted);padding:40px;" data-i18n="admin.table.noData">暂无数据</td></tr>
+                    </tbody>
+                </table>
+                <div class="pagination" id="staff-pagination"></div>
+                </div>
+            </div>
+
+            <!-- 志愿者 -->
+            <div class="admin-panel" id="panel-volunteer">
+                <div class="toolbar">
+                    <div class="search-box">
+                        <input type="text" id="volunteer-search" data-i18n="admin.search.placeholder.volunteer" data-i18n-placeholder placeholder="搜索姓名/手机..." onkeydown="if(event.key==='Enter')loadVolunteer(1)">
+                        <button onclick="loadVolunteer(1)"><i class="fas fa-search"></i></button>
+                    </div>
+                    <span style="color:var(--color-text-muted);font-size:13px;" id="volunteer-total-label">共 0 条</span>
+                </div>
+                <div class="table-card">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="admin.table.id">ID</th><th data-i18n="admin.table.name">姓名</th><th data-i18n="admin.table.phone">手机</th><th data-i18n="admin.table.school">学校/单位</th><th data-i18n="admin.table.age">年龄</th><th data-i18n="admin.table.status">状态</th><th data-i18n="admin.table.submitTime">提交时间</th><th data-i18n="admin.table.action">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="volunteer-table-body">
+                        <tr><td colspan="8" style="text-align:center;color:var(--color-text-muted);padding:40px;" data-i18n="admin.table.noData">暂无数据</td></tr>
+                    </tbody>
+                </table>
+                <div class="pagination" id="volunteer-pagination"></div>
+                </div>
+            </div>
+
+            <!-- 嘉宾 -->
+            <div class="admin-panel" id="panel-guest">
+                <div class="toolbar">
+                    <div class="search-box">
+                        <input type="text" id="guest-search" data-i18n="admin.search.placeholder.guest" data-i18n-placeholder placeholder="搜索姓名/手机/单位..." onkeydown="if(event.key==='Enter')loadGuest(1)">
+                        <button onclick="loadGuest(1)"><i class="fas fa-search"></i></button>
+                    </div>
+                    <span style="color:var(--color-text-muted);font-size:13px;" id="guest-total-label">共 0 条</span>
+                </div>
+                <div class="table-card">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="admin.table.id">ID</th><th data-i18n="admin.table.name">姓名</th><th data-i18n="admin.table.phone">手机</th><th data-i18n="admin.table.company">公司</th><th data-i18n="admin.table.guestType">嘉宾类型</th><th data-i18n="admin.table.status">状态</th><th data-i18n="admin.table.submitTime">提交时间</th><th data-i18n="admin.table.action">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="guest-table-body">
+                        <tr><td colspan="8" style="text-align:center;color:var(--color-text-muted);padding:40px;" data-i18n="admin.table.noData">暂无数据</td></tr>
+                    </tbody>
+                </table>
+                <div class="pagination" id="guest-pagination"></div>
                 </div>
             </div>
         </div>
@@ -272,16 +365,17 @@
     <div class="modal-overlay" id="detail-modal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeDetail()">&times;</button>
-            <h3 id="detail-title">详情</h3>
+            <h3 id="detail-title" data-i18n="admin.detail.title">详情</h3>
             <div id="detail-content" class="detail-grid"></div>
         </div>
     </div>
 
+    <script src="i18n.js"></script>
     <script>
         const API_BASE = window.location.origin + '/api';
         let TOKEN = localStorage.getItem('admin_token') || '';
         let currentTab = 'visitor';
-        let visitorPage = 1, exhibitorPage = 1;
+        let visitorPage = 1, exhibitorPage = 1, staffPage = 1, volunteerPage = 1, guestPage = 1;
 
         function showToast(msg, type = 'success') {
             const t = document.getElementById('toast');
@@ -326,6 +420,9 @@
             await loadStats();
             await loadVisitor(1);
             await loadExhibitor(1);
+            await loadStaff(1);
+            await loadVolunteer(1);
+            await loadGuest(1);
         }
 
         // 加载统计数据
@@ -334,10 +431,16 @@
             if (res.code === 1) {
                 document.getElementById('stat-visitor-total').textContent = res.data.visitorTotal;
                 document.getElementById('stat-exhibitor-total').textContent = res.data.exhibitorTotal;
+                document.getElementById('stat-staff-total').textContent = res.data.staffTotal || 0;
+                document.getElementById('stat-volunteer-total').textContent = res.data.volunteerTotal || 0;
+                document.getElementById('stat-guest-total').textContent = res.data.guestTotal || 0;
                 document.getElementById('stat-visitor-today').textContent = '今日 ' + res.data.visitorToday;
                 document.getElementById('stat-exhibitor-today').textContent = '今日 ' + res.data.exhibitorToday;
                 document.getElementById('visitor-tab-count').textContent = res.data.visitorTotal;
                 document.getElementById('exhibitor-tab-count').textContent = res.data.exhibitorTotal;
+                document.getElementById('staff-tab-count').textContent = res.data.staffTotal || 0;
+                document.getElementById('volunteer-tab-count').textContent = res.data.volunteerTotal || 0;
+                document.getElementById('guest-tab-count').textContent = res.data.guestTotal || 0;
             }
         }
 
@@ -437,10 +540,135 @@
         }
 
         function renderStatus(status) {
-            const labels = { 1: '已提交', 2: '已联系', 3: '已完成' };
-            const extLabels = { 1: '已提交', 2: '已联系', 3: '已签约' };
-            const label = currentTab === 'exhibitor' ? extLabels[status] : labels[status];
+            const visitorLabels = { 1: '已提交', 2: '已联系', 3: '已完成' };
+            const exhibitorLabels = { 1: '已提交', 2: '已联系', 3: '已签约' };
+            const staffLabels = { 1: '已提交', 2: '审核通过', 3: '已上岗', 4: '已完成' };
+            const volunteerLabels = { 1: '已提交', 2: '审核通过', 3: '已录用', 4: '已完成' };
+            const guestLabels = { 1: '已提交', 2: '已确认', 3: '已到会', 4: '已完成' };
+            let label = '未知';
+            if (currentTab === 'exhibitor') label = exhibitorLabels[status];
+            else if (currentTab === 'staff') label = staffLabels[status];
+            else if (currentTab === 'volunteer') label = volunteerLabels[status];
+            else if (currentTab === 'guest') label = guestLabels[status];
+            else label = visitorLabels[status];
             return `<span class="status-badge status-${status}">${label || '未知'}</span>`;
+        }
+
+        // ========== 工作人员 ==========
+        async function loadStaff(page) {
+            staffPage = page;
+            const keyword = document.getElementById('staff-search').value;
+            const res = await api('/admin/staff/list?page=' + page + '&size=15&keyword=' + encodeURIComponent(keyword));
+            if (res.code !== 1) return;
+            const { list, total } = res.data;
+            document.getElementById('staff-total-label').textContent = '共 ' + total + ' 条';
+            const tbody = document.getElementById('staff-table-body');
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--color-text-muted);padding:40px;">暂无数据</td></tr>';
+            } else {
+                tbody.innerHTML = list.map(item => `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td><strong>${item.name}</strong></td>
+                        <td>${item.phone}</td>
+                        <td>${item.department || '-'}</td>
+                        <td>${item.work_type || '-'}</td>
+                        <td>${renderStatus(item.status)}</td>
+                        <td style="font-size:13px;color:var(--color-text-muted);">${item.created_at}</td>
+                        <td>
+                            <div class="table-actions">
+                                <button class="btn-view" onclick="viewDetail('staff',${item.id})"><i class="fas fa-eye"></i></button>
+                                <select class="status-select" onchange="updateStatus('staff',${item.id},this.value)">
+                                    <option value="1" ${item.status==1?'selected':''}>已提交</option>
+                                    <option value="2" ${item.status==2?'selected':''}>审核通过</option>
+                                    <option value="3" ${item.status==3?'selected':''}>已上岗</option>
+                                    <option value="4" ${item.status==4?'selected':''}>已完成</option>
+                                </select>
+                                <button class="btn-delete" onclick="deleteRecord('staff',${item.id})"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+            renderPagination('staff-pagination', total, page, 'loadStaff');
+        }
+
+        // ========== 志愿者 ==========
+        async function loadVolunteer(page) {
+            volunteerPage = page;
+            const keyword = document.getElementById('volunteer-search').value;
+            const res = await api('/admin/volunteer/list?page=' + page + '&size=15&keyword=' + encodeURIComponent(keyword));
+            if (res.code !== 1) return;
+            const { list, total } = res.data;
+            document.getElementById('volunteer-total-label').textContent = '共 ' + total + ' 条';
+            const tbody = document.getElementById('volunteer-table-body');
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--color-text-muted);padding:40px;">暂无数据</td></tr>';
+            } else {
+                tbody.innerHTML = list.map(item => `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td><strong>${item.name}</strong></td>
+                        <td>${item.phone}</td>
+                        <td>${item.school || '-'}</td>
+                        <td>${item.age ? item.age + '岁' : '-'}</td>
+                        <td>${renderStatus(item.status)}</td>
+                        <td style="font-size:13px;color:var(--color-text-muted);">${item.created_at}</td>
+                        <td>
+                            <div class="table-actions">
+                                <button class="btn-view" onclick="viewDetail('volunteer',${item.id})"><i class="fas fa-eye"></i></button>
+                                <select class="status-select" onchange="updateStatus('volunteer',${item.id},this.value)">
+                                    <option value="1" ${item.status==1?'selected':''}>已提交</option>
+                                    <option value="2" ${item.status==2?'selected':''}>审核通过</option>
+                                    <option value="3" ${item.status==3?'selected':''}>已录用</option>
+                                    <option value="4" ${item.status==4?'selected':''}>已完成</option>
+                                </select>
+                                <button class="btn-delete" onclick="deleteRecord('volunteer',${item.id})"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+            renderPagination('volunteer-pagination', total, page, 'loadVolunteer');
+        }
+
+        // ========== 嘉宾 ==========
+        async function loadGuest(page) {
+            guestPage = page;
+            const keyword = document.getElementById('guest-search').value;
+            const res = await api('/admin/guest/list?page=' + page + '&size=15&keyword=' + encodeURIComponent(keyword));
+            if (res.code !== 1) return;
+            const { list, total } = res.data;
+            document.getElementById('guest-total-label').textContent = '共 ' + total + ' 条';
+            const tbody = document.getElementById('guest-table-body');
+            if (!list || list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--color-text-muted);padding:40px;">暂无数据</td></tr>';
+            } else {
+                tbody.innerHTML = list.map(item => `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td><strong>${item.name}</strong></td>
+                        <td>${item.phone}</td>
+                        <td>${item.company || '-'}</td>
+                        <td>${item.guest_type || '-'}</td>
+                        <td>${renderStatus(item.status)}</td>
+                        <td style="font-size:13px;color:var(--color-text-muted);">${item.created_at}</td>
+                        <td>
+                            <div class="table-actions">
+                                <button class="btn-view" onclick="viewDetail('guest',${item.id})"><i class="fas fa-eye"></i></button>
+                                <select class="status-select" onchange="updateStatus('guest',${item.id},this.value)">
+                                    <option value="1" ${item.status==1?'selected':''}>已提交</option>
+                                    <option value="2" ${item.status==2?'selected':''}>已确认</option>
+                                    <option value="3" ${item.status==3?'selected':''}>已到会</option>
+                                    <option value="4" ${item.status==4?'selected':''}>已完成</option>
+                                </select>
+                                <button class="btn-delete" onclick="deleteRecord('guest',${item.id})"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+            renderPagination('guest-pagination', total, page, 'loadGuest');
         }
 
         // 分页
@@ -465,10 +693,14 @@
             const res = await api('/admin/' + type + '/detail/' + id);
             if (res.code !== 1) return showToast(res.msg, 'error');
             const d = res.data;
+            const statusLabel = d.status === 1 ? '已提交' : d.status === 2 ? '已联系' : d.status === 3 ? '已完成' : '未知';
+            const titleMap = { visitor: '观展预约', exhibitor: '参展报名', staff: '工作人员', volunteer: '志愿者', guest: '嘉宾' };
             
+            document.getElementById('detail-title').textContent = (titleMap[type] || type) + ' 详情 #' + d.id;
+
+            let html = '';
             if (type === 'visitor') {
-                document.getElementById('detail-title').textContent = '观展预约详情 #' + d.id;
-                document.getElementById('detail-content').innerHTML = `
+                html = `
                     ${renderDetailItem('姓名', d.name)}
                     ${renderDetailItem('手机', d.phone)}
                     ${renderDetailItem('邮箱', d.email)}
@@ -483,9 +715,8 @@
                     ${renderDetailItem('状态', ['已提交','已联系','已完成'][d.status-1] || '-')}
                     ${renderDetailItem('提交时间', d.created_at)}
                 `;
-            } else {
-                document.getElementById('detail-title').textContent = '参展报名详情 #' + d.id;
-                document.getElementById('detail-content').innerHTML = `
+            } else if (type === 'exhibitor') {
+                html = `
                     ${renderDetailItem('联系人', d.contact_name)}
                     ${renderDetailItem('手机', d.phone)}
                     ${renderDetailItem('邮箱', d.email)}
@@ -502,7 +733,61 @@
                     ${renderDetailItem('状态', ['已提交','已联系','已签约'][d.status-1] || '-')}
                     ${renderDetailItem('提交时间', d.created_at)}
                 `;
+            } else if (type === 'staff') {
+                html = `
+                    ${renderDetailItem('姓名', d.name)}
+                    ${renderDetailItem('手机', d.phone)}
+                    ${renderDetailItem('邮箱', d.email || '-')}
+                    ${renderDetailItem('身份证号', d.id_card || '-')}
+                    ${renderDetailItem('所属部门', d.department || '-')}
+                    ${renderDetailItem('职务', d.position || '-')}
+                    ${renderDetailItem('工作类型', d.work_type || '-')}
+                    ${renderDetailItem('工作经验', d.work_experience || '-', true)}
+                    ${renderDetailItem('紧急联系人', d.emergency_contact || '-')}
+                    ${renderDetailItem('紧急电话', d.emergency_phone || '-')}
+                    ${renderDetailItem('备注', d.remark || '-', true)}
+                    ${renderDetailItem('状态', ['已提交','审核通过','已上岗','已完成'][d.status-1] || '-')}
+                    ${renderDetailItem('提交时间', d.created_at)}
+                `;
+            } else if (type === 'volunteer') {
+                const serviceTypes = d.service_type ? (Array.isArray(d.service_type) ? d.service_type.join('、') : d.service_type) : '-';
+                html = `
+                    ${renderDetailItem('姓名', d.name)}
+                    ${renderDetailItem('手机', d.phone)}
+                    ${renderDetailItem('邮箱', d.email || '-')}
+                    ${renderDetailItem('身份证号', d.id_card || '-')}
+                    ${renderDetailItem('性别', d.gender || '-')}
+                    ${renderDetailItem('年龄', d.age ? d.age + '岁' : '-')}
+                    ${renderDetailItem('学校/单位', d.school || '-')}
+                    ${renderDetailItem('专业/特长', d.major || '-')}
+                    ${renderDetailItem('学历', d.education || '-')}
+                    ${renderDetailItem('可服务日期', d.available_dates || '-')}
+                    ${renderDetailItem('意向服务类型', serviceTypes, true)}
+                    ${renderDetailItem('语言能力', d.languages || '-')}
+                    ${renderDetailItem('志愿经历', d.volunteer_experience || '-', true)}
+                    ${renderDetailItem('自我介绍', d.self_intro || '-', true)}
+                    ${renderDetailItem('紧急联系人', d.emergency_contact || '-')}
+                    ${renderDetailItem('紧急电话', d.emergency_phone || '-')}
+                    ${renderDetailItem('备注', d.remark || '-', true)}
+                    ${renderDetailItem('状态', ['已提交','审核通过','已录用','已完成'][d.status-1] || '-')}
+                    ${renderDetailItem('提交时间', d.created_at)}
+                `;
+            } else if (type === 'guest') {
+                html = `
+                    ${renderDetailItem('姓名', d.name)}
+                    ${renderDetailItem('手机', d.phone)}
+                    ${renderDetailItem('邮箱', d.email)}
+                    ${renderDetailItem('所在单位', d.company)}
+                    ${renderDetailItem('职务', d.position || '-')}
+                    ${renderDetailItem('嘉宾称号', d.title || '-')}
+                    ${renderDetailItem('个人简介', d.introduction || '-', true)}
+                    ${renderDetailItem('公开展示', d.is_public ? '是' : '否')}
+                    ${renderDetailItem('备注', d.remark || '-', true)}
+                    ${renderDetailItem('状态', ['已提交','已确认','已到会','已完成'][d.status-1] || '-')}
+                    ${renderDetailItem('提交时间', d.created_at)}
+                `;
             }
+            document.getElementById('detail-content').innerHTML = html;
             document.getElementById('detail-modal').classList.add('show');
         }
 
@@ -521,8 +806,7 @@
             });
             if (res.code === 1) {
                 showToast('状态更新成功');
-                if (type === 'visitor') loadVisitor(visitorPage);
-                else loadExhibitor(exhibitorPage);
+                refreshCurrentTab(type);
                 loadStats();
             } else {
                 showToast(res.msg, 'error');
@@ -535,12 +819,19 @@
             const res = await api('/admin/' + type + '/delete/' + id, { method: 'DELETE' });
             if (res.code === 1) {
                 showToast('删除成功');
-                if (type === 'visitor') loadVisitor(visitorPage);
-                else loadExhibitor(exhibitorPage);
+                refreshCurrentTab(type);
                 loadStats();
             } else {
                 showToast(res.msg, 'error');
             }
+        }
+
+        function refreshCurrentTab(type) {
+            if (type === 'visitor') loadVisitor(visitorPage);
+            else if (type === 'exhibitor') loadExhibitor(exhibitorPage);
+            else if (type === 'staff') loadStaff(staffPage);
+            else if (type === 'volunteer') loadVolunteer(volunteerPage);
+            else if (type === 'guest') loadGuest(guestPage);
         }
 
         // 自动登录

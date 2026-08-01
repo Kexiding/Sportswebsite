@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-i18n-title="register.hero.title">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在线报名 | 华北体博会·健身器材博览会</title>
+    <title>在线报名 | 国际健身体育产业博览会</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="loading-overlay" id="loading">
-        <div class="loading-logo">NCISHE</div>
+        <div class="loading-logo" data-i18n="loading.logo">IFSIE</div>
         <div class="loading-bar">
             <div class="loading-bar-fill"></div>
         </div>
@@ -20,23 +20,24 @@
         <div class="header-content">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <div class="logo-text">NCISHE</div>
+                <div class="logo-text">IFSIE</div>
             </div>
             
             <nav>
                 <div class="nav-links">
-                    <a href="index.html">首页</a>
-                    <a href="index.html#highlights">展区</a>
-                    <a href="schedule.html">日程</a>
-                    <a href="index.html#forum">论坛</a>
-                    <a href="brands.html">品牌</a>
-                    <a href="index.html#news">资讯</a>
-                    <a href="index.html#guide">指南</a>
+                    <a href="index.html" data-i18n="nav.home">首页</a>
+                    <a href="index.html#highlights" data-i18n="nav.highlights">展区</a>
+                    <a href="schedule.html" data-i18n="nav.schedule">日程</a>
+                    <a href="index.html#forum" data-i18n="nav.forum">论坛</a>
+                    <a href="brands.html" data-i18n="nav.brands">品牌</a>
+                    <a href="index.html#news" data-i18n="nav.news">资讯</a>
+                    <a href="index.html#guide" data-i18n="nav.guide">指南</a>
+                    <a href="recruit.html" data-i18n="nav.recruit">招募</a>
                 </div>
                 
                 <div class="nav-cta">
-                    <a href="register.html" class="btn btn-secondary active">观展预约</a>
-                    <a href="register.html#exhibit" class="btn btn-accent">参展报名</a>
+                    <a href="register.html" class="btn btn-secondary active" data-i18n="nav.register">观展预约</a>
+                    <a href="recruit.html" class="btn btn-accent" data-i18n="nav.recruitBtn">人员招募</a>
                 </div>
             </nav>
             
@@ -56,302 +57,383 @@
         </div>
         
         <div class="hero-content">
-            <div class="hero-badge">ONLINE REGISTRATION</div>
-            <h1 class="hero-title">在线报名 <span>观展 & 参展</span></h1>
-            <p class="hero-subtitle">填写信息，开启您的体博会之旅</p>
+            <div class="hero-badge" data-i18n="register.hero.badge">ONLINE REGISTRATION</div>
+            <h1 class="hero-title"><span data-i18n="register.hero.title">在线报名</span> <span data-i18n="register.hero.title.span">观展 & 参展</span></h1>
+            <p class="hero-subtitle" data-i18n="register.hero.subtitle">填写信息，开启您的国际健身体育产业博览会之旅</p>
         </div>
     </section>
 
     <section class="section section-dark" id="visitor">
         <div class="section-header">
-            <div class="section-label">VISITOR REGISTRATION</div>
-            <h2 class="section-title">观展预约 <span>专业观众登记</span></h2>
-            <p class="section-description">预登记观众可享受免费入场、VIP服务等专属权益</p>
+            <div class="section-label" data-i18n="register.section.label">REGISTRATION</div>
+            <h2 class="section-title"><span data-i18n="register.section.title">在线报名</span> <span data-i18n="register.section.title.span">观展 · 嘉宾 · 参展</span></h2>
+            <p class="section-description" data-i18n="register.section.desc">选择报名类型，填写信息完成登记</p>
         </div>
-        
-        <div class="form-container" style="position: relative;">
-            <div class="form-header">
-                <h2>专业观众报名</h2>
-                <p>填写以下信息完成观展预约</p>
-            </div>
-            
-            <form id="visitor-form">
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-user"></i> 基本信息</h3>
-                    
-                    <div class="form-group">
-                        <label for="visitor-name">姓名 <span style="color: var(--color-green);">*</span></label>
-                        <input type="text" id="visitor-name" name="name" class="form-control" required placeholder="请输入您的姓名" maxlength="50">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="visitor-phone">手机 <span style="color: var(--color-green);">*</span></label>
-                        <input type="tel" id="visitor-phone" name="phone" class="form-control" required placeholder="请输入您的手机号码" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="visitor-email">邮箱 <span style="color: var(--color-green);">*</span></label>
-                        <input type="email" id="visitor-email" name="email" class="form-control" required placeholder="用于接收电子票和展会资讯" maxlength="200">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="visitor-city">所在城市</label>
-                        <input type="text" id="visitor-city" name="city" class="form-control" placeholder="请输入您所在的城市" maxlength="100">
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-building"></i> 公司信息</h3>
-                    
-                    <div class="form-group">
-                        <label for="visitor-company">公司名称 <span style="color: var(--color-green);">*</span></label>
-                        <input type="text" id="visitor-company" name="company" class="form-control" required placeholder="请输入您的公司名称" maxlength="200">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="visitor-position">职位 <span style="color: var(--color-green);">*</span></label>
-                        <input type="text" id="visitor-position" name="position" class="form-control" required placeholder="请输入您的职位" maxlength="100">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="visitor-type">观众类型</label>
-                        <select id="visitor-type" name="type" class="form-control">
-                            <option value="专业采购商">专业采购商</option>
-                            <option value="经销商/代理商">经销商/代理商</option>
-                            <option value="场馆运营方">场馆运营方</option>
-                            <option value="健身从业者">健身从业者</option>
-                            <option value="行业学员">行业学员</option>
-                            <option value="普通观众">普通观众</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-calendar-check"></i> 观展信息</h3>
-                    
-                    <div class="form-group">
-                        <label for="visitor-date">意向观展日期 <span style="color: var(--color-green);">*</span></label>
-                        <select id="visitor-date" name="visitDate" class="form-control" required>
-                            <option value="">请选择观展日期</option>
-                            <option value="第一天（2026年10月17日）">第一天（2026年10月17日）</option>
-                            <option value="第二天（2026年10月18日）">第二天（2026年10月18日）</option>
-                            <option value="第三天（2026年10月19日）">第三天（2026年10月19日）</option>
-                            <option value="全部展期">全部展期</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="visitor-count">参观人数 <span style="color: var(--color-green);">*</span></label>
-                        <select id="visitor-count" name="visitCount" class="form-control" required>
-                            <option value="">请选择参观人数</option>
-                            <option value="1">1人</option>
-                            <option value="2-3">2-3人</option>
-                            <option value="4-5">4-5人</option>
-                            <option value="6-10">6-10人</option>
-                            <option value="10+">10人以上</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>感兴趣的展区</label>
-                        <div class="form-check-group">
-                            <label class="form-check-label">
-                                <input type="checkbox" name="interest" value="健身器材及设备区" class="form-check-input">
-                                <span>健身器材及设备区</span>
-                            </label>
-                            <label class="form-check-label">
-                                <input type="checkbox" name="interest" value="健康营养与膳食区" class="form-check-input">
-                                <span>健康营养与膳食区</span>
-                            </label>
-                            <label class="form-check-label">
-                                <input type="checkbox" name="interest" value="运动服饰与装备区" class="form-check-input">
-                                <span>运动服饰与装备区</span>
-                            </label>
-                            <label class="form-check-label">
-                                <input type="checkbox" name="interest" value="健康管理与服务区" class="form-check-input">
-                                <span>健康管理与服务区</span>
-                            </label>
-                            <label class="form-check-label">
-                                <input type="checkbox" name="interest" value="康复理疗与养老区" class="form-check-input">
-                                <span>康复理疗与养老区</span>
-                            </label>
-                            <label class="form-check-label">
-                                <input type="checkbox" name="interest" value="体育服务生态展区" class="form-check-input">
-                                <span>体育服务生态展区</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-comment"></i> 其他需求</h3>
-                    
-                    <div class="form-group">
-                        <label for="visitor-message">备注信息</label>
-                        <textarea id="visitor-message" name="message" class="form-control" placeholder="请输入您的其他需求或备注信息" maxlength="500"></textarea>
-                    </div>
-                </div>
-                
-                <div class="form-submit">
-                    <button type="submit" class="btn btn-primary">提交预约</button>
-                </div>
-            </form>
-        </div>
-    </section>
 
-    <section class="section section-gray" id="exhibit">
-        <div class="section-header">
-            <div class="section-label">EXHIBITOR APPLICATION</div>
-            <h2 class="section-title">参展报名 <span>企业展位申请</span></h2>
-            <p class="section-description">填写参展申请信息，组委会将在3个工作日内与您联系</p>
-        </div>
-        
-        <div class="form-container" style="position: relative;">
-            <div class="form-header">
-                <h2>参展企业报名</h2>
-                <p>填写以下信息完成展位申请</p>
+        <!-- 观展预约 & 嘉宾 Tab 切换 -->
+        <style>
+            .register-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+            .register-tab { padding: 14px 32px; font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--color-text-secondary); background: var(--color-white); border: 2px solid var(--color-card-border); cursor: pointer; transition: all var(--transition-fast); border-radius: 10px; }
+            .register-tab.active { background: var(--color-primary-blue); color: var(--color-white); border-color: var(--color-primary-blue); box-shadow: var(--shadow-glow-blue); }
+            .register-tab:hover:not(.active) { border-color: var(--color-primary-blue); color: var(--color-primary-blue); }
+            .register-section { display: none; animation: scale-in 0.4s ease; }
+            .register-section.active { display: block; }
+        </style>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="register-tabs">
+                <button class="register-tab active" data-target="visitor-panel" data-i18n="register.tab.visitor">观展预约</button>
+                <button class="register-tab" data-target="guest-panel" data-i18n="register.tab.guest">嘉宾报名</button>
+                <button class="register-tab" data-target="exhibit-panel" data-i18n="register.tab.exhibit">参展报名</button>
             </div>
-            
-            <form id="exhibit-form">
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-user"></i> 联系人信息</h3>
-                    
-                    <div class="form-group">
-                        <label for="exhibit-name">联系人姓名 <span style="color: var(--color-green);">*</span></label>
-                        <input type="text" id="exhibit-name" name="name" class="form-control" required placeholder="请输入联系人姓名" maxlength="50">
+
+            <!-- === Tab: 观展预约 === -->
+            <div class="register-section active" id="visitor-panel">
+                <div class="form-container" style="position: relative;">
+                    <div class="form-header">
+                        <h2 data-i18n="register.visitor.title">专业观众报名</h2>
+                        <p data-i18n="register.visitor.desc">填写以下信息完成观展预约</p>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="exhibit-phone">联系电话 <span style="color: var(--color-green);">*</span></label>
-                        <input type="tel" id="exhibit-phone" name="phone" class="form-control" required placeholder="请输入联系电话" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="exhibit-email">邮箱 <span style="color: var(--color-green);">*</span></label>
-                        <input type="email" id="exhibit-email" name="email" class="form-control" required placeholder="用于接收参展确认函和展会资料" maxlength="200">
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-building"></i> 公司信息</h3>
-                    
-                    <div class="form-group">
-                        <label for="exhibit-company">公司名称 <span style="color: var(--color-green);">*</span></label>
-                        <input type="text" id="exhibit-company" name="company" class="form-control" required placeholder="请输入公司名称" maxlength="200">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="exhibit-brand">品牌名称</label>
-                        <input type="text" id="exhibit-brand" name="brand" class="form-control" placeholder="请输入参展品牌名称（如与公司名称不同）" maxlength="200">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="exhibit-website">公司网址</label>
-                        <input type="url" id="exhibit-website" name="website" class="form-control" placeholder="请输入公司官网地址" maxlength="500">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="exhibit-first">是否首次参展</label>
-                        <select id="exhibit-first" name="isFirst" class="form-control">
-                            <option value="">请选择</option>
-                            <option value="是，首次参展">是，首次参展</option>
-                            <option value="否，往届参展商">否，往届参展商</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-cube"></i> 展位需求</h3>
-                    
-                    <div class="form-group">
-                        <label for="exhibit-booth-type">展位类型 <span style="color: var(--color-green);">*</span></label>
-                        <select id="exhibit-booth-type" name="boothType" class="form-control" required>
-                            <option value="">请选择展位类型</option>
-                            <option value="标准展位">标准展位</option>
-                            <option value="双开标准展位">双开标准展位</option>
-                            <option value="特装展位">特装展位</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="exhibit-area">展位面积 <span style="color: var(--color-green);">*</span></label>
-                        <select id="exhibit-area" name="exhibitArea" class="form-control" required>
-                            <option value="">请选择展位面积</option>
-                            <option value="9">9㎡</option>
-                            <option value="18">18㎡</option>
-                            <option value="36">36㎡</option>
-                            <option value="54">54㎡</option>
-                            <option value="72">72㎡</option>
-                            <option value="100">100㎡及以上</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="exhibit-type">参展类别 <span style="color: var(--color-green);">*</span></label>
-                        <select id="exhibit-type" name="exhibitType" class="form-control" required>
-                            <option value="">请选择参展类别</option>
-                            <option value="健身器材及设备">健身器材及设备</option>
-                            <option value="健康营养与膳食">健康营养与膳食</option>
-                            <option value="运动服饰与装备">运动服饰与装备</option>
-                            <option value="健康管理与服务">健康管理与服务</option>
-                            <option value="康复理疗与养老">康复理疗与养老</option>
-                            <option value="体育产业服务生态">体育产业服务生态</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-plug"></i> 增值服务</h3>
-                    
-                    <div class="form-group">
-                        <label>所需增值服务（可多选）</label>
-                        <div class="form-check-group">
-                            <label class="form-check-label">
-                                <input type="checkbox" name="services" value="额外电力" class="form-check-input">
-                                <span>额外电力</span>
-                            </label>
-                            <label class="form-check-label">
-                                <input type="checkbox" name="services" value="网络服务" class="form-check-input">
-                                <span>网络服务</span>
-                            </label>
-                            <label class="form-check-label">
-                                <input type="checkbox" name="services" value="压缩空气" class="form-check-input">
-                                <span>压缩空气</span>
-                            </label>
-                            <label class="form-check-label">
-                                <input type="checkbox" name="services" value="吊点服务" class="form-check-input">
-                                <span>吊点服务</span>
-                            </label>
-                            <label class="form-check-label">
-                                <input type="checkbox" name="services" value="给排水" class="form-check-input">
-                                <span>给排水</span>
-                            </label>
-                            <label class="form-check-label">
-                                <input type="checkbox" name="services" value="特装清洁" class="form-check-input">
-                                <span>特装清洁</span>
-                            </label>
+                    <form id="visitor-form">
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.personal"><i class="fas fa-user"></i> 基本信息</h3>
+                            
+                            <div class="form-group">
+                                <label for="visitor-name" data-i18n="register.label.name">姓名 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" id="visitor-name" name="name" class="form-control" required placeholder="请输入您的姓名" maxlength="50" data-i18n-placeholder="register.placeholder.name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="visitor-phone" data-i18n="register.label.phone">手机 <span style="color: var(--color-green);">*</span></label>
+                                <input type="tel" id="visitor-phone" name="phone" class="form-control" required placeholder="请输入您的手机号码" maxlength="11" data-i18n-placeholder="register.placeholder.phone" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="visitor-email" data-i18n="register.label.email">邮箱 <span style="color: var(--color-green);">*</span></label>
+                                <input type="email" id="visitor-email" name="email" class="form-control" required placeholder="用于接收电子票和展会资讯" maxlength="200" data-i18n-placeholder="register.placeholder.email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="visitor-city" data-i18n="register.label.city">所在城市</label>
+                                <input type="text" id="visitor-city" name="city" class="form-control" placeholder="请输入您所在的城市" maxlength="100" data-i18n-placeholder="register.placeholder.city">
+                            </div>
                         </div>
-                    </div>
+                        
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.company"><i class="fas fa-building"></i> 公司信息</h3>
+                            
+                            <div class="form-group">
+                                <label for="visitor-company" data-i18n="register.label.company">公司名称 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" id="visitor-company" name="company" class="form-control" required placeholder="请输入您的公司名称" maxlength="200" data-i18n-placeholder="register.placeholder.company">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="visitor-position" data-i18n="register.label.position">职位 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" id="visitor-position" name="position" class="form-control" required placeholder="请输入您的职位" maxlength="100" data-i18n-placeholder="register.placeholder.position">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="visitor-type" data-i18n="register.label.visitorType">观众类型</label>
+                                <select id="visitor-type" name="type" class="form-control">
+                                    <option value="专业采购商">专业采购商</option>
+                                    <option value="经销商/代理商">经销商/代理商</option>
+                                    <option value="场馆运营方">场馆运营方</option>
+                                    <option value="健身从业者">健身从业者</option>
+                                    <option value="行业学员">行业学员</option>
+                                    <option value="普通观众">普通观众</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.visit"><i class="fas fa-calendar-check"></i> 观展信息</h3>
+                            
+                            <div class="form-group">
+                                <label for="visitor-date" data-i18n="register.label.visitDate">意向观展日期 <span style="color: var(--color-green);">*</span></label>
+                                <select id="visitor-date" name="visitDate" class="form-control" required>
+                                    <option value="" data-i18n="register.placeholder.visitDate">请选择观展日期</option>
+                                    <option value="第一天（2026年10月17日）" data-i18n="register.option.day1">第一天（2026年10月17日）</option>
+                                    <option value="第二天（2026年10月18日）" data-i18n="register.option.day2">第二天（2026年10月18日）</option>
+                                    <option value="第三天（2026年10月19日）" data-i18n="register.option.day3">第三天（2026年10月19日）</option>
+                                    <option value="全部展期" data-i18n="register.option.all">全部展期</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="visitor-count" data-i18n="register.label.visitorCount">参观人数 <span style="color: var(--color-green);">*</span></label>
+                                <select id="visitor-count" name="visitCount" class="form-control" required>
+                                    <option value="" data-i18n="register.placeholder.visitorCount">请选择参观人数</option>
+                                    <option value="1" data-i18n="register.option.1person">1人</option>
+                                    <option value="2-3" data-i18n="register.option.2to5">2-3人</option>
+                                    <option value="4-5" data-i18n="register.option.4to5">4-5人</option>
+                                    <option value="6-10" data-i18n="register.option.6to10">6-10人</option>
+                                    <option value="10+" data-i18n="register.option.10plus">10人以上</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label data-i18n="register.label.interest">感兴趣的展区</label>
+                                <div class="form-check-group">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="interest" value="健身器材及设备区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone1">健身器材及设备区</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="interest" value="健康营养与膳食区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone2">健康营养与膳食区</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="interest" value="运动服饰与装备区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone3">运动服饰与装备区</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="interest" value="健康管理与服务区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone4">健康管理与服务区</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="interest" value="康复理疗与养老区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone5">康复理疗与养老区</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="interest" value="体育服务生态展区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone6">体育服务生态展区</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.other"><i class="fas fa-comment"></i> 其他需求</h3>
+                            
+                            <div class="form-group">
+                                <label for="visitor-message" data-i18n="register.label.visitorMessage">备注信息</label>
+                                <textarea id="visitor-message" name="message" class="form-control" placeholder="请输入您的其他需求或备注信息" maxlength="500" data-i18n-placeholder="register.placeholder.remark"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary" data-i18n="register.submit.visitor">提交预约</button>
+                        </div>
+                    </form>
                 </div>
-                
-                <div class="form-section">
-                    <h3 class="form-section-title"><i class="fas fa-file-text"></i> 补充信息</h3>
+            </div>
+
+            <!-- === Tab: 嘉宾报名 === -->
+            <div class="register-section" id="guest-panel">
+                <div class="form-container" style="position: relative;">
+                    <div class="form-header">
+                        <h2 data-i18n="register.guest.title">嘉宾报名</h2>
+                        <p data-i18n="register.guest.desc">申请成为展会嘉宾，共话行业未来</p>
+                    </div>
                     
-                    <div class="form-group">
-                        <label for="exhibit-products">主营产品</label>
-                        <textarea id="exhibit-products" name="products" class="form-control" placeholder="请简要描述贵公司的主营产品" maxlength="1000"></textarea>
+                    <form id="register-guest-form">
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.basic"><i class="fas fa-user"></i> 基本信息</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.name">姓名 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" name="name" class="form-control" required placeholder="请输入姓名" maxlength="50" data-i18n-placeholder="recruit.placeholder.name">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.phone">手机号 <span style="color: var(--color-green);">*</span></label>
+                                <input type="tel" name="phone" class="form-control" required placeholder="请输入手机号码" maxlength="11" data-i18n-placeholder="recruit.placeholder.phone" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.email">邮箱 <span style="color: var(--color-green);">*</span></label>
+                                <input type="email" name="email" class="form-control" required placeholder="请输入邮箱" maxlength="200" data-i18n-placeholder="recruit.placeholder.email">
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.guestInfo"><i class="fas fa-building"></i> 单位信息</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.company">所在单位 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" name="company" class="form-control" required placeholder="请输入所在单位" maxlength="200" data-i18n-placeholder="recruit.placeholder.company">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.position">职务/头衔</label>
+                                <input type="text" name="position" class="form-control" placeholder="请输入职务或头衔" maxlength="100" data-i18n-placeholder="recruit.placeholder.position">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.title">嘉宾称号</label>
+                                <input type="text" name="title" class="form-control" placeholder="如：行业专家、教授、CEO" maxlength="200" data-i18n-placeholder="recruit.placeholder.title">
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.guestBio"><i class="fas fa-user-edit"></i> 个人简介</h3>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.introduction">个人简介</label>
+                                <textarea name="introduction" class="form-control" placeholder="请简要介绍个人经历和成就" maxlength="2000" style="min-height: 120px;" data-i18n-placeholder="recruit.placeholder.introduction"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="recruit.section.other"><i class="fas fa-cog"></i> 其他设置</h3>
+                            <div class="form-group">
+                                <label class="form-check-label" style="display: inline-flex; padding: 10px 18px;">
+                                    <input type="checkbox" name="isPublic" value="1" checked class="form-check-input">
+                                    <span>同意在官网公开展示个人信息</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="recruit.label.remark">备注</label>
+                                <textarea name="remark" class="form-control" placeholder="其他需要说明的信息" maxlength="500" data-i18n-placeholder="recruit.placeholder.remark"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary" data-i18n="register.submit.guest">提交申请</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- === Tab: 参展报名 === -->
+            <div class="register-section" id="exhibit-panel">
+                <div class="form-container" style="position: relative;">
+                    <div class="form-header">
+                        <h2 data-i18n="register.exhibit.title">参展企业报名</h2>
+                        <p data-i18n="register.exhibit.desc">填写以下信息完成展位申请</p>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="exhibit-booth">展位需求</label>
-                        <textarea id="exhibit-booth" name="boothRequirements" class="form-control" placeholder="请描述您对展位的特殊需求（如位置偏好、装修要求等）" maxlength="1000"></textarea>
-                    </div>
+                    <form id="exhibit-form">
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.exhibitContact"><i class="fas fa-user"></i> 联系人信息</h3>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-name" data-i18n="register.label.exhibitName">联系人姓名 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" id="exhibit-name" name="name" class="form-control" required placeholder="请输入联系人姓名" maxlength="50" data-i18n-placeholder="register.exhibit.placeholder.name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-phone" data-i18n="register.label.exhibitPhone">联系电话 <span style="color: var(--color-green);">*</span></label>
+                                <input type="tel" id="exhibit-phone" name="phone" class="form-control" required placeholder="请输入联系电话" maxlength="11" data-i18n-placeholder="register.exhibit.placeholder.phone" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-email" data-i18n="register.label.exhibitEmail">邮箱 <span style="color: var(--color-green);">*</span></label>
+                                <input type="email" id="exhibit-email" name="email" class="form-control" required placeholder="用于接收参展确认函和展会资料" maxlength="200" data-i18n-placeholder="register.exhibit.placeholder.email">
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.exhibitInfo"><i class="fas fa-building"></i> 公司信息</h3>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-company" data-i18n="register.label.exhibitCompany">公司名称 <span style="color: var(--color-green);">*</span></label>
+                                <input type="text" id="exhibit-company" name="company" class="form-control" required placeholder="请输入公司名称" maxlength="200" data-i18n-placeholder="register.exhibit.placeholder.company">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-brand" data-i18n="register.label.exhibitBrand">品牌名称</label>
+                                <input type="text" id="exhibit-brand" name="brand" class="form-control" placeholder="请输入参展品牌名称（如与公司名称不同）" maxlength="200" data-i18n-placeholder="register.exhibit.placeholder.brand">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-website" data-i18n="register.label.exhibitWebsite">公司网址</label>
+                                <input type="url" id="exhibit-website" name="website" class="form-control" placeholder="请输入公司官网地址" maxlength="500" data-i18n-placeholder="register.exhibit.placeholder.website">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-first" data-i18n="register.label.exhibitFirstTimer">是否首次参展</label>
+                                <select id="exhibit-first" name="isFirst" class="form-control">
+                                    <option value="" data-i18n="register.placeholder.selectDefault">请选择</option>
+                                    <option value="是，首次参展" data-i18n="register.option.yes">是，首次参展</option>
+                                    <option value="否，往届参展商" data-i18n="register.option.no">否，往届参展商</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.exhibitDetail"><i class="fas fa-cube"></i> 展位需求</h3>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-booth-type" data-i18n="register.label.exhibitBoothType">展位类型 <span style="color: var(--color-green);">*</span></label>
+                                <select id="exhibit-booth-type" name="boothType" class="form-control" required>
+                                    <option value="" data-i18n="register.placeholder.boothType">请选择展位类型</option>
+                                    <option value="标准展位">标准展位</option>
+                                    <option value="双开标准展位">双开标准展位</option>
+                                    <option value="特装展位">特装展位</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-area" data-i18n="register.label.exhibitBoothArea">展位面积 <span style="color: var(--color-green);">*</span></label>
+                                <select id="exhibit-area" name="exhibitArea" class="form-control" required>
+                                    <option value="" data-i18n="register.placeholder.boothArea">请选择展位面积</option>
+                                    <option value="9">9㎡</option>
+                                    <option value="18">18㎡</option>
+                                    <option value="36">36㎡</option>
+                                    <option value="54">54㎡</option>
+                                    <option value="72">72㎡</option>
+                                    <option value="100">100㎡及以上</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-type" data-i18n="register.label.exhibitCategory">参展类别 <span style="color: var(--color-green);">*</span></label>
+                                <select id="exhibit-type" name="exhibitType" class="form-control" required>
+                                    <option value="" data-i18n="register.placeholder.exhibitCategory">请选择参展类别</option>
+                                    <option value="健身器材及设备">健身器材及设备</option>
+                                    <option value="健康营养与膳食">健康营养与膳食</option>
+                                    <option value="运动服饰与装备">运动服饰与装备</option>
+                                    <option value="健康管理与服务">健康管理与服务</option>
+                                    <option value="康复理疗与养老">康复理疗与养老</option>
+                                    <option value="体育产业服务生态">体育产业服务生态</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.services"><i class="fas fa-plug"></i> 增值服务</h3>
+                            
+                            <div class="form-group">
+                                <label data-i18n="register.label.services">所需增值服务（可多选）</label>
+                                <div class="form-check-group">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="services" value="额外电力" class="form-check-input">
+                                        <span data-i18n="register.service.extraPower">额外电力</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="services" value="网络服务" class="form-check-input">
+                                        <span data-i18n="register.service.network">网络服务</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="services" value="压缩空气" class="form-check-input">
+                                        <span data-i18n="register.service.compressedAir">压缩空气</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="services" value="吊点服务" class="form-check-input">
+                                        <span data-i18n="register.service.hoisting">吊点服务</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="services" value="给排水" class="form-check-input">
+                                        <span data-i18n="register.service.waterDrainage">给排水</span>
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="services" value="特装清洁" class="form-check-input">
+                                        <span data-i18n="register.service.cleaning">特装清洁</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3 class="form-section-title" data-i18n="register.section.supplement"><i class="fas fa-file-text"></i> 补充信息</h3>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-products" data-i18n="register.label.exhibitProducts">主营产品</label>
+                                <textarea id="exhibit-products" name="products" class="form-control" placeholder="请简要描述贵公司的主营产品" maxlength="1000" data-i18n-placeholder="register.exhibit.placeholder.products"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exhibit-booth" data-i18n="register.label.exhibitBooth">展位需求</label>
+                                <textarea id="exhibit-booth" name="boothRequirements" class="form-control" placeholder="请描述您对展位的特殊需求（如位置偏好、装修要求等）" maxlength="1000" data-i18n-placeholder="register.exhibit.placeholder.booth"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-accent" data-i18n="register.submit.exhibit">提交申请</button>
+                        </div>
+                    </form>
                 </div>
-                
-                <div class="form-submit">
-                    <button type="submit" class="btn btn-accent">提交申请</button>
-                </div>
-            </form>
+            </div>
         </div>
     </section>
 
@@ -363,46 +445,46 @@
                         <div class="logo-icon"></div>
                         <div class="logo-text">SPORT <span>EXPO</span></div>
                     </div>
-                    <p>华北体博会·健身器材博览会是华北地区规模最大、最具影响力的健身产业专业展会，致力于打造健身器材、运动装备、智慧体育全产业链商贸平台。</p>
+                    <p data-i18n="footer.desc">国际健身体育产业博览会是国际规模最大、最具影响力的健身产业专业展会，致力于打造健身器材、运动装备、智慧体育全产业链商贸平台。</p>
                     <div class="footer-contact">
-                        <div class="footer-contact-item"><i class="fas fa-phone"></i> 400-888-8888</div>
-                        <div class="footer-contact-item"><i class="fas fa-envelope"></i> info@ncishe.com</div>
-                        <div class="footer-contact-item"><i class="fas fa-map-marker"></i> 天津市津南区咸水沽镇国展大道888号</div>
+                        <div class="footer-contact-item"><i class="fas fa-phone"></i> <span data-i18n="footer.phone">022-83532300</span></div>
+                        <div class="footer-contact-item"><i class="fas fa-envelope"></i> <span data-i18n="footer.email">info@ifsie.com</span></div>
+                        <div class="footer-contact-item"><i class="fas fa-map-marker"></i> <span data-i18n="footer.address">天津市津南区咸水沽国展大厦B座1002</span></div>
                     </div>
                 </div>
                 
                 <div class="footer-links">
-                    <h4>展会信息</h4>
-                    <a href="index.html">展会概况</a>
-                    <a href="index.html#highlights">展区规划</a>
-                    <a href="schedule.html">展会日程</a>
-                    <a href="index.html#forum">同期活动</a>
-                    <a href="brands.html">参展品牌</a>
+                    <h4 data-i18n="footer.title1">展会信息</h4>
+                    <a href="index.html" data-i18n="footer.link.overview">展会概况</a>
+                    <a href="index.html#highlights" data-i18n="footer.link.planning">展区规划</a>
+                    <a href="schedule.html" data-i18n="footer.link.schedule">展会日程</a>
+                    <a href="index.html#forum" data-i18n="footer.link.events">同期活动</a>
+                    <a href="brands.html" data-i18n="footer.link.brands">参展品牌</a>
                 </div>
                 
                 <div class="footer-links">
-                    <h4>参展服务</h4>
-                    <a href="register.html#exhibit">展位申请</a>
-                    <a href="#">赞助合作</a>
-                    <a href="#">广告投放</a>
-                    <a href="#">媒体合作</a>
-                    <a href="#">资料下载</a>
+                    <h4 data-i18n="footer.title2">参展服务</h4>
+                    <a href="register.html#exhibit" data-i18n="footer.link.booth">展位申请</a>
+                    <a href="cooperation.html#sponsor" data-i18n="footer.link.sponsor">赞助合作</a>
+                    <a href="cooperation.html#advertise" data-i18n="footer.link.advertise">广告投放</a>
+                    <a href="cooperation.html#media" data-i18n="footer.link.media">媒体合作</a>
+                    <a href="cooperation.html#download" data-i18n="footer.link.download">资料下载</a>
                 </div>
                 
                 <div class="footer-links">
-                    <h4>观展服务</h4>
-                    <a href="register.html">在线报名</a>
-                    <a href="index.html#guide">观展指南</a>
-                    <a href="#">交通指引</a>
-                    <a href="#">住宿推荐</a>
-                    <a href="#">常见问题</a>
+                    <h4 data-i18n="footer.title3">观展服务</h4>
+                    <a href="register.html" data-i18n="footer.link.register">在线报名</a>
+                    <a href="index.html#guide" data-i18n="footer.link.visitGuide">观展指南</a>
+                    <a href="guide.html#transport" data-i18n="footer.link.transport">交通指引</a>
+                    <a href="guide.html#hotel" data-i18n="footer.link.hotel">住宿推荐</a>
+                    <a href="guide.html#faq">常见问题</a>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <div class="footer-copyright">© 2026 华北体博会·健身器材博览会 版权所有 | 京ICP备xxxxxxxx号</div>
+                <div class="footer-copyright" data-i18n="footer.copyright">© 2026 国际健身体育产业博览会 版权所有 | 京ICP备xxxxxxxx号</div>
                 <div class="footer-partners">
-                    <span>主办单位</span>
+                    <span data-i18n="footer.hostOrg">主办单位</span>
                     <span>协办单位</span>
                     <span>支持单位</span>
                 </div>
@@ -415,5 +497,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

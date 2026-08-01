@@ -1,8 +1,15 @@
 const jwt = require('jsonwebtoken');
 const db = require('../config/db');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'zhanlt_admin_2026';
+const TABLE_MAP = {
+  visitor: 'visitor_registrations',
+  exhibitor: 'exhibitor_applications',
+  staff: 'staff_registrations',
+  volunteer: 'volunteer_registrations',
+  guest: 'guest_registrations'
+};
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+const JWT_SECRET = process.env.JWT_SECRET || 'zhanlt_admin_2026';
 
 /**
  * 管理员登录
@@ -41,13 +48,16 @@ async function stats(req, res, next) {
   try {
     const [[{ visitorTotal }]] = await db.execute('SELECT COUNT(*) as visitorTotal FROM visitor_registrations');
     const [[{ exhibitorTotal }]] = await db.execute('SELECT COUNT(*) as exhibitorTotal FROM exhibitor_applications');
+    const [[{ staffTotal }]] = await db.execute('SELECT COUNT(*) as staffTotal FROM staff_registrations');
+    const [[{ volunteerTotal }]] = await db.execute('SELECT COUNT(*) as volunteerTotal FROM volunteer_registrations');
+    const [[{ guestTotal }]] = await db.execute('SELECT COUNT(*) as guestTotal FROM guest_registrations');
     const [[{ visitorToday }]] = await db.execute('SELECT COUNT(*) as visitorToday FROM visitor_registrations WHERE DATE(created_at) = CURDATE()');
     const [[{ exhibitorToday }]] = await db.execute('SELECT COUNT(*) as exhibitorToday FROM exhibitor_applications WHERE DATE(created_at) = CURDATE()');
 
     res.json({
       code: 1,
       msg: 'success',
-      data: { visitorTotal, exhibitorTotal, visitorToday, exhibitorToday }
+      data: { visitorTotal, exhibitorTotal, staffTotal, volunteerTotal, guestTotal, visitorToday, exhibitorToday }
     });
   } catch (err) {
     next(err);
@@ -128,7 +138,8 @@ async function exhibitorList(req, res, next) {
 async function detail(req, res, next) {
   try {
     const { type, id } = req.params;
-    const table = type === 'visitor' ? 'visitor_registrations' : 'exhibitor_applications';
+    const table = TABLE_MAP[type];
+    if (!table) return res.json({ code: 0, msg: '类型错误' });
 
     const [rows] = await db.execute(`SELECT * FROM ${table} WHERE id = ?`, [id]);
     if (rows.length === 0) {
@@ -157,7 +168,8 @@ async function updateStatus(req, res, next) {
   try {
     const { type, id } = req.params;
     const { status } = req.body;
-    const table = type === 'visitor' ? 'visitor_registrations' : 'exhibitor_applications';
+    const table = TABLE_MAP[type];
+    if (!table) return res.json({ code: 0, msg: '类型错误' });
 
     await db.execute(`UPDATE ${table} SET status = ? WHERE id = ?`, [status, id]);
     res.json({ code: 1, msg: '状态更新成功' });
@@ -172,7 +184,8 @@ async function updateStatus(req, res, next) {
 async function remove(req, res, next) {
   try {
     const { type, id } = req.params;
-    const table = type === 'visitor' ? 'visitor_registrations' : 'exhibitor_applications';
+    const table = TABLE_MAP[type];
+    if (!table) return res.json({ code: 0, msg: '类型错误' });
 
     await db.execute(`DELETE FROM ${table} WHERE id = ?`, [id]);
     res.json({ code: 1, msg: '删除成功' });
