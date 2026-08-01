@@ -625,6 +625,56 @@ function initRegisterGuestForm() {
   });
 }
 
+// ========== 滚动入场动画（IntersectionObserver） ==========
+const REVEAL_SELECTORS = [
+    '.section-header',
+    '.highlight-card',
+    '.forum-card',
+    '.news-card',
+    '.guide-card',
+    '.brand-item',
+    '.speaker-card',
+    '.info-item',
+    '.schedule-item',
+    '.content-card'
+];
+
+let revealObserver = null;
+let revealCounter = 0;
+
+function observeReveals() {
+    if (!revealObserver) return;
+    document.querySelectorAll(REVEAL_SELECTORS.join(',')).forEach(el => {
+        if (el.classList.contains('reveal') || el.classList.contains('in-view')) return;
+        if (!el.dataset.revealIndex) el.dataset.revealIndex = revealCounter++;
+        // 入场动画结束后移除类，避免干扰后续 hover 变换与状态
+        el.classList.add('reveal');
+        el.style.transitionDelay = `${(el.dataset.revealIndex % 8) * 55}ms`;
+        revealObserver.observe(el);
+    });
+}
+
+function initRevealAnimation() {
+    // 用户偏好减少动效时，直接跳过入场动画
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            el.classList.add('in-view');
+            revealObserver.unobserve(el);
+            // 动画结束后清除入场类与延迟，恢复默认样式
+            setTimeout(() => {
+                el.classList.remove('reveal', 'in-view');
+                el.style.transitionDelay = '';
+            }, 800);
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    observeReveals();
+}
+
 // ========== 原有功能保持不变 ==========
 document.addEventListener('DOMContentLoaded', () => {
     initLoading();
@@ -634,6 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initRegistrationForms();
     initRecruitForms();
     initRegisterGuestForm();
+    initRevealAnimation();
 });
 
 function initLoading() {
@@ -820,6 +871,8 @@ async function loadPageData() {
     if (window.i18n && typeof window.i18n.translate === 'function') {
         window.i18n.translate();
     }
+    // 动态渲染的新元素补加入场动画观察
+    observeReveals();
 }
 
 document.addEventListener('DOMContentLoaded', () => { loadPageData(); });

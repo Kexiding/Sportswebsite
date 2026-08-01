@@ -71,15 +71,6 @@
         </div>
 
         <!-- 观展预约 & 嘉宾 Tab 切换 -->
-        <style>
-            .register-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
-            .register-tab { padding: 14px 32px; font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--color-text-secondary); background: var(--color-white); border: 2px solid var(--color-card-border); cursor: pointer; transition: all var(--transition-fast); border-radius: 10px; }
-            .register-tab.active { background: var(--color-primary-blue); color: var(--color-white); border-color: var(--color-primary-blue); box-shadow: var(--shadow-glow-blue); }
-            .register-tab:hover:not(.active) { border-color: var(--color-primary-blue); color: var(--color-primary-blue); }
-            .register-section { display: none; animation: scale-in 0.4s ease; }
-            .register-section.active { display: block; }
-        </style>
-
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="register-tabs">
                 <button class="register-tab active" data-target="visitor-panel" data-i18n="register.tab.visitor">观展预约</button>
