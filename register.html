@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN" data-i18n-title="register.hero.title">
 <head>
     <meta charset="UTF-8">
@@ -144,9 +144,9 @@
                                 <label for="visitor-date" data-i18n="register.label.visitDate">意向观展日期 <span style="color: var(--color-green);">*</span></label>
                                 <select id="visitor-date" name="visitDate" class="form-control" required>
                                     <option value="" data-i18n="register.placeholder.visitDate">请选择观展日期</option>
-                                    <option value="第一天（2026年10月17日）" data-i18n="register.option.day1">第一天（2026年10月17日）</option>
-                                    <option value="第二天（2026年10月18日）" data-i18n="register.option.day2">第二天（2026年10月18日）</option>
-                                    <option value="第三天（2026年10月19日）" data-i18n="register.option.day3">第三天（2026年10月19日）</option>
+                                    <option value="第一天（2026年10月15日）" data-i18n="register.option.day1">第一天（2026年10月15日）</option>
+                                    <option value="第二天（2026年10月16日）" data-i18n="register.option.day2">第二天（2026年10月16日）</option>
+                                    <option value="第三天（2026年10月17日）" data-i18n="register.option.day3">第三天（2026年10月17日）</option>
                                     <option value="全部展期" data-i18n="register.option.all">全部展期</option>
                                 </select>
                             </div>
@@ -167,28 +167,28 @@
                                 <label data-i18n="register.label.interest">感兴趣的展区</label>
                                 <div class="form-check-group">
                                     <label class="form-check-label">
-                                        <input type="checkbox" name="interest" value="健身器材及设备区" class="form-check-input">
-                                        <span data-i18n="register.interest.zone1">健身器材及设备区</span>
+                                        <input type="checkbox" name="interest" value="健身器材展区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone1">健身器材展区</span>
                                     </label>
                                     <label class="form-check-label">
-                                        <input type="checkbox" name="interest" value="健康营养与膳食区" class="form-check-input">
-                                        <span data-i18n="register.interest.zone2">健康营养与膳食区</span>
+                                        <input type="checkbox" name="interest" value="体育科技与智能穿戴展区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone2">体育科技与智能穿戴展区</span>
                                     </label>
                                     <label class="form-check-label">
-                                        <input type="checkbox" name="interest" value="运动服饰与装备区" class="form-check-input">
-                                        <span data-i18n="register.interest.zone3">运动服饰与装备区</span>
+                                        <input type="checkbox" name="interest" value="运动服饰与装备展区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone3">运动服饰与装备展区</span>
                                     </label>
                                     <label class="form-check-label">
-                                        <input type="checkbox" name="interest" value="健康管理与服务区" class="form-check-input">
-                                        <span data-i18n="register.interest.zone4">健康管理与服务区</span>
+                                        <input type="checkbox" name="interest" value="运动营养与健康食品展区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone4">运动营养与健康食品展区</span>
                                     </label>
                                     <label class="form-check-label">
-                                        <input type="checkbox" name="interest" value="康复理疗与养老区" class="form-check-input">
-                                        <span data-i18n="register.interest.zone5">康复理疗与养老区</span>
+                                        <input type="checkbox" name="interest" value="康养与康复设备展区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone5">康养与康复设备展区</span>
                                     </label>
                                     <label class="form-check-label">
-                                        <input type="checkbox" name="interest" value="体育服务生态展区" class="form-check-input">
-                                        <span data-i18n="register.interest.zone6">体育服务生态展区</span>
+                                        <input type="checkbox" name="interest" value="户外与极限运动展区" class="form-check-input">
+                                        <span data-i18n="register.interest.zone6">户外与极限运动展区</span>
                                     </label>
                                 </div>
                             </div>
@@ -338,9 +338,9 @@
                                 <label for="exhibit-booth-type" data-i18n="register.label.exhibitBoothType">展位类型 <span style="color: var(--color-green);">*</span></label>
                                 <select id="exhibit-booth-type" name="boothType" class="form-control" required>
                                     <option value="" data-i18n="register.placeholder.boothType">请选择展位类型</option>
-                                    <option value="标准展位">标准展位</option>
-                                    <option value="双开标准展位">双开标准展位</option>
-                                    <option value="特装展位">特装展位</option>
+                                    <option value="标准展位（9㎡，¥10,800/个）" data-i18n="register.booth.standard">标准展位（9㎡，¥10,800/个）</option>
+                                    <option value="光地展位（36㎡起，¥1,180/㎡）" data-i18n="register.booth.rawspace">光地展位（36㎡起，¥1,180/㎡）</option>
+                                    <option value="优惠光地（36㎡起，¥980/㎡）" data-i18n="register.booth.discount">优惠光地（36㎡起，¥980/㎡）</option>
                                 </select>
                             </div>
                             
@@ -361,12 +361,12 @@
                                 <label for="exhibit-type" data-i18n="register.label.exhibitCategory">参展类别 <span style="color: var(--color-green);">*</span></label>
                                 <select id="exhibit-type" name="exhibitType" class="form-control" required>
                                     <option value="" data-i18n="register.placeholder.exhibitCategory">请选择参展类别</option>
-                                    <option value="健身器材及设备">健身器材及设备</option>
-                                    <option value="健康营养与膳食">健康营养与膳食</option>
+                                    <option value="健身器材">健身器材</option>
+                                    <option value="体育科技与智能穿戴">体育科技与智能穿戴</option>
                                     <option value="运动服饰与装备">运动服饰与装备</option>
-                                    <option value="健康管理与服务">健康管理与服务</option>
-                                    <option value="康复理疗与养老">康复理疗与养老</option>
-                                    <option value="体育产业服务生态">体育产业服务生态</option>
+                                    <option value="运动营养与健康食品">运动营养与健康食品</option>
+                                    <option value="康养与康复设备">康养与康复设备</option>
+                                    <option value="户外与极限运动">户外与极限运动</option>
                                 </select>
                             </div>
                         </div>
@@ -434,13 +434,13 @@
                 <div class="footer-brand">
                     <div class="logo">
                         <div class="logo-icon"></div>
-                        <div class="logo-text">SPORT <span>EXPO</span></div>
+                        <div class="logo-text">IFSIE</div>
                     </div>
-                    <p data-i18n="footer.desc">国际健身体育产业博览会是国际规模最大、最具影响力的健身产业专业展会，致力于打造健身器材、运动装备、智慧体育全产业链商贸平台。</p>
+                    <p data-i18n="footer.desc">国际健身体育产业博览会（IFSIE 2026）立足京津冀、辐射环渤海，10万㎡展示面积汇聚1200+参展企业，打造健身器材、体育科技、运动服饰、运动营养、康养康复、户外极限全产业链商贸平台。</p>
                     <div class="footer-contact">
-                        <div class="footer-contact-item"><i class="fas fa-phone"></i> <span data-i18n="footer.phone">022-83532300</span></div>
+                        <div class="footer-contact-item"><i class="fas fa-phone"></i> <span data-i18n="footer.phone">15823628384</span></div>
                         <div class="footer-contact-item"><i class="fas fa-envelope"></i> <span data-i18n="footer.email">info@ifsie.com</span></div>
-                        <div class="footer-contact-item"><i class="fas fa-map-marker"></i> <span data-i18n="footer.address">天津市津南区咸水沽国展大厦B座1002</span></div>
+                        <div class="footer-contact-item"><i class="fas fa-map-marker"></i> <span data-i18n="footer.address">天津市津南区国展大道888号</span></div>
                     </div>
                 </div>
                 
@@ -468,7 +468,7 @@
                     <a href="index.html#guide" data-i18n="footer.link.visitGuide">观展指南</a>
                     <a href="guide.html#transport" data-i18n="footer.link.transport">交通指引</a>
                     <a href="guide.html#hotel" data-i18n="footer.link.hotel">住宿推荐</a>
-                    <a href="guide.html#faq">常见问题</a>
+                    <a href="guide.html#faq" data-i18n="footer.link.faq">常见问题</a>
                 </div>
             </div>
             

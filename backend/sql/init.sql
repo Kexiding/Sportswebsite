@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `volunteer_registrations` (
   `school` varchar(200) DEFAULT NULL COMMENT '学校/单位',
   `major` varchar(100) DEFAULT NULL COMMENT '专业/特长',
   `education` varchar(50) DEFAULT NULL COMMENT '学历',
-  `available_dates` varchar(200) DEFAULT NULL COMMENT '可服务日期(如:10月17日,10月18日)',
+  `available_dates` varchar(200) DEFAULT NULL COMMENT '可服务日期(如:10月15日,10月16日,10月17日)',
   `service_type` varchar(200) DEFAULT NULL COMMENT '意向服务类型(引导/翻译/后勤/其他,逗号分隔)',
   `languages` varchar(200) DEFAULT NULL COMMENT '语言能力(如:英语CET6,日语N2)',
   `volunteer_experience` text COMMENT '志愿服务经历',

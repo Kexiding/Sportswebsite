@@ -25,7 +25,7 @@
 
     --color-text-primary: #1a1a2e;
     --color-text-secondary: #4a4a6a;
-    --color-text-muted: #8892a6;
+    --color-text-muted: #5d6b82;
     --color-text-light: #ffffff;
 
     --color-accent-green: #00c9a7;
@@ -1357,9 +1357,11 @@ nav {
     align-items: center;
     justify-content: center;
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-weight: 800;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    white-space: nowrap;
     color: var(--color-primary-blue);
     border-radius: var(--radius-md);
     transition: all var(--transition-normal);
@@ -1640,7 +1642,7 @@ footer::before {
 .footer-brand p {
     font-family: var(--font-body);
     font-size: 0.95rem;
-    color: #8a8aaa;
+    color: #a2a7bd;
     line-height: 1.7;
     max-width: 360px;
 }
@@ -1657,7 +1659,7 @@ footer::before {
     gap: 10px;
     font-family: var(--font-body);
     font-size: 0.95rem;
-    color: #b0b0c8;
+    color: #bcc0d6;
 }
 
 .footer-contact-item i {
@@ -1683,7 +1685,7 @@ footer::before {
 .footer-links a {
     font-family: var(--font-body);
     font-size: 0.9rem;
-    color: #8a8aaa;
+    color: #a2a7bd;
     text-decoration: none;
     transition: color var(--transition-fast), padding-left var(--transition-fast);
 }
@@ -1704,7 +1706,7 @@ footer::before {
 .footer-copyright {
     font-family: var(--font-body);
     font-size: 0.85rem;
-    color: #6a6a8a;
+    color: #8b90a9;
 }
 
 .footer-partners {
@@ -1715,7 +1717,7 @@ footer::before {
 .footer-partners span {
     font-family: var(--font-body);
     font-size: 0.85rem;
-    color: #8a8aaa;
+    color: #a2a7bd;
     padding: 6px 16px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1749,7 +1751,7 @@ footer::before {
 .organizer-list span {
     font-family: var(--font-body);
     font-size: 0.8rem;
-    color: #8a8aaa;
+    color: #a2a7bd;
     padding: 6px 14px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1852,7 +1854,7 @@ footer::before {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: #9aa3b5;
+    color: #7d8698;
 }
 
 .form-group textarea {
@@ -2233,9 +2235,17 @@ footer::before {
     .news-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-}
 
-@media (max-width: 992px) {
+    /* 导航栏在中等宽度（含英文模式）下提前折叠为汉堡菜单，避免链接溢出/挤压 */
+    .hero-info {
+        flex-wrap: wrap;
+        row-gap: 16px;
+    }
+
+    .hero-stat-item {
+        padding: 0 20px;
+    }
+
     .nav-links {
         display: none;
         position: absolute;
@@ -2296,7 +2306,9 @@ footer::before {
     .burger-menu {
         display: flex;
     }
+}
 
+@media (max-width: 992px) {
     .hero-title {
         font-size: 2.5rem;
     }
@@ -2490,7 +2502,7 @@ footer::before {
     .brand-logo {
         width: 48px;
         height: 48px;
-        font-size: 0.85rem;
+        font-size: 0.56rem;
     }
 
     .brand-name {

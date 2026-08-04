@@ -79,7 +79,7 @@ if (!document.getElementById(loadingStyleId)) {
             position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-20px);
             padding: 14px 32px; border-radius: 10px; font-size: 15px; font-weight: 600;
             z-index: 99998; opacity: 0; transition: all 0.35s ease;
-            max-width: 90%; white-space: nowrap; pointer-events: none;
+            max-width: min(90vw, 520px); white-space: normal; text-align: center; pointer-events: none;
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
         .toast.toast-error { background: #e53935; color: #fff; }
