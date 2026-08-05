@@ -25,17 +25,17 @@
             border-bottom: 1px solid #e8ecf0; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
         }
         .admin-header h1 { color: var(--color-text-primary); font-size: 20px; font-family: var(--font-display); margin: 0; }
-        .admin-header h1 span { color: var(--color-green); }
+        .admin-header h1 span { color: var(--color-primary-rose); }
         
         .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 30px; }
         .stat-card {
             background: #fff; border: 1px solid #e8ecf0;
             border-radius: 12px; padding: 24px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-        .stat-card .stat-number { font-size: 32px; font-weight: 700; color: var(--color-green); font-family: var(--font-display); }
+        .stat-card .stat-number { font-size: 32px; font-weight: 700; color: var(--color-primary-rose); font-family: var(--font-display); }
         .stat-card .stat-label { color: var(--color-text-secondary); font-size: 14px; margin-top: 4px; }
         .stat-card .stat-sub { color: #999; font-size: 12px; margin-top: 2px; }
-        .stat-card.blue .stat-number { color: var(--color-primary-blue); }
+        .stat-card.blue .stat-number { color: var(--color-primary-rose); }
         
         .admin-tabs {
             display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 24px;
@@ -48,12 +48,12 @@
             transition: all var(--transition-fast); border: none; background: none;
         }
         .admin-tab:hover { color: var(--color-text-primary); background: #f8f9fb; }
-        .admin-tab.active { color: var(--color-green); background: var(--color-green-light, #e6f9f5); }
+        .admin-tab.active { color: var(--color-primary-rose); background: var(--color-primary-rose-light, #fce4ec); }
         .admin-tab .badge {
             display: inline-block; margin-left: 8px; padding: 2px 10px;
             border-radius: 20px; font-size: 12px; background: #f0f0f0; color: var(--color-text-muted);
         }
-        .admin-tab.active .badge { background: var(--color-green); color: #fff; }
+        .admin-tab.active .badge { background: var(--color-primary-rose); color: #fff; }
         
         .admin-panel { display: none; }
         .admin-panel.active { display: block; }
@@ -75,7 +75,7 @@
         .search-box button {
             background: none; border: none; color: #999; cursor: pointer; padding: 4px;
         }
-        .search-box button:hover { color: var(--color-green); }
+        .search-box button:hover { color: var(--color-primary-rose); }
         
         .table-card {
             background: #fff; border-radius: 12px; border: 1px solid #e8ecf0;
@@ -97,8 +97,8 @@
             display: inline-block; padding: 3px 12px; border-radius: 20px;
             font-size: 12px; font-weight: 600;
         }
-        .status-1 { background: var(--color-green-light, #e6f9f5); color: var(--color-green); }
-        .status-2 { background: var(--color-primary-blue-light, #e3f2fd); color: var(--color-primary-blue); }
+        .status-1 { background: var(--color-primary-rose-light, #fce4ec); color: var(--color-primary-rose); }
+        .status-2 { background: var(--color-primary-rose-light, #fce4ec); color: var(--color-primary-rose); }
         .status-3 { background: #fff8e1; color: #f57f17; }
         
         .table-actions { display: flex; gap: 6px; align-items: center; }
@@ -106,7 +106,7 @@
             padding: 5px 10px; border: none; border-radius: 6px; cursor: pointer;
             font-size: 12px; transition: all var(--transition-fast);
         }
-        .btn-view { background: var(--color-primary-blue-light, #e3f2fd); color: var(--color-primary-blue); }
+        .btn-view { background: var(--color-primary-rose-light, #fce4ec); color: var(--color-primary-rose); }
         .btn-view:hover { background: #bbdefb; }
         .btn-delete { background: #ffebee; color: #e53935; }
         .btn-delete:hover { background: #ffcdd2; }
@@ -119,8 +119,8 @@
             background: #fff; color: var(--color-text-secondary); cursor: pointer;
             transition: all var(--transition-fast); font-size: 14px;
         }
-        .pagination button:hover { border-color: var(--color-green); color: var(--color-green); }
-        .pagination button.active { background: var(--color-green); color: #fff; border-color: var(--color-green); }
+        .pagination button:hover { border-color: var(--color-primary-rose); color: var(--color-primary-rose); }
+        .pagination button.active { background: var(--color-primary-rose); color: #fff; border-color: var(--color-primary-rose); }
         .pagination button:disabled { opacity: 0.4; cursor: not-allowed; background: #f8f9fb; }
         
         /* Modal */
@@ -150,7 +150,7 @@
             background: #fff; border: 1px solid #e0e4e8;
             color: #333; padding: 4px 10px; border-radius: 6px; font-size: 12px; cursor: pointer;
         }
-        .status-select:focus { border-color: var(--color-green); outline: none; }
+        .status-select:focus { border-color: var(--color-primary-rose); outline: none; }
 
         .logout-btn {
             background: none; border: 1px solid #e0e4e8;
@@ -165,7 +165,7 @@
             transition: all 0.3s; opacity: 0; transform: translateY(-10px);
         }
         .toast-admin.show { opacity: 1; transform: translateY(0); }
-        .toast-admin.success { background: var(--color-green); color: #fff; }
+        .toast-admin.success { background: var(--color-primary-rose); color: #fff; }
         .toast-admin.error { background: #e53935; color: #fff; }
 
         @media (max-width: 768px) {
@@ -220,11 +220,11 @@
                     <div class="stat-label" data-i18n="admin.stat.exhibitor">参展报名总数</div>
                     <div class="stat-sub" id="stat-exhibitor-today" data-i18n="admin.stat.today">今日 0</div>
                 </div>
-                <div class="stat-card" style="border-left:3px solid var(--color-primary-blue);">
+                <div class="stat-card" style="border-left:3px solid var(--color-primary-rose);">
                     <div class="stat-number" id="stat-staff-total">0</div>
                     <div class="stat-label" data-i18n="admin.stat.staff">工作人员报名</div>
                 </div>
-                <div class="stat-card" style="border-left:3px solid var(--color-green);">
+                <div class="stat-card" style="border-left:3px solid var(--color-primary-rose);">
                     <div class="stat-number" id="stat-volunteer-total">0</div>
                     <div class="stat-label" data-i18n="admin.stat.volunteer">志愿者报名</div>
                 </div>

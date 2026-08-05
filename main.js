@@ -53,7 +53,7 @@ if (!document.getElementById(loadingStyleId)) {
         .loading-spinner { text-align: center; }
         .spinner {
             width: 48px; height: 48px; border: 4px solid rgba(255,255,255,0.2);
-            border-top-color: var(--color-green, #00b894);
+            border-top-color: var(--color-primary-rose, #d81b60);
             border-radius: 50%; animation: spin 0.8s linear infinite;
             margin: 0 auto 16px;
         }
@@ -66,7 +66,7 @@ if (!document.getElementById(loadingStyleId)) {
             box-shadow: 0 0 0 3px rgba(229,57,53,0.15) !important;
         }
         .form-control.success {
-            border-color: var(--color-green, #00b894) !important;
+            border-color: var(--color-primary-rose, #d81b60) !important;
         }
         .form-error-msg {
             color: #e53935; font-size: 13px; margin-top: 4px;
@@ -83,7 +83,7 @@ if (!document.getElementById(loadingStyleId)) {
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
         .toast.toast-error { background: #e53935; color: #fff; }
-        .toast.toast-success { background: var(--color-green, #00b894); color: #fff; }
+        .toast.toast-success { background: var(--color-primary-rose, #d81b60); color: #fff; }
         /* 合同下载模态框 */
         .contract-modal-overlay {
             display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
@@ -99,11 +99,11 @@ if (!document.getElementById(loadingStyleId)) {
         }
         .contract-modal-icon {
             width: 64px; height: 64px; margin: 0 auto 16px;
-            background: var(--color-green-light, #e6f9f5);
+            background: var(--color-primary-rose-light, #fce4ec);
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
         }
         .contract-modal-icon i {
-            font-size: 30px; color: var(--color-green, #00b894);
+            font-size: 30px; color: var(--color-primary-rose, #d81b60);
         }
         .contract-modal-title {
             font-family: var(--font-display, 'Orbitron', sans-serif);
@@ -126,7 +126,7 @@ if (!document.getElementById(loadingStyleId)) {
         }
         .contract-modal-btn.no:hover { background: #e0e0e0; }
         .contract-modal-btn.yes {
-            background: var(--color-green, #00b894); color: #fff;
+            background: var(--color-primary-rose, #d81b60); color: #fff;
         }
         .contract-modal-btn.yes:hover { opacity: 0.85; }
         .contract-modal-btn.yes i { margin-right: 6px; }
@@ -304,7 +304,7 @@ function showConfirm(msg) {
                     background: #fff; border-radius: 16px; padding: 32px 36px;
                     max-width: 380px; text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.18);
                 }
-                .confirm-icon { font-size: 40px; color: var(--color-green, #00b894); margin-bottom: 12px; }
+                .confirm-icon { font-size: 40px; color: var(--color-primary-rose, #d81b60); margin-bottom: 12px; }
                 .confirm-msg { font-size: 16px; color: #333; margin-bottom: 24px; line-height: 1.5; }
                 .confirm-actions { display: flex; gap: 12px; justify-content: center; }
                 .confirm-btn {
@@ -314,7 +314,7 @@ function showConfirm(msg) {
                 }
                 .confirm-btn.cancel { background: #f0f0f0; color: #666; }
                 .confirm-btn.cancel:hover { background: #e0e0e0; }
-                .confirm-btn.ok { background: var(--color-green, #00b894); color: #fff; }
+                .confirm-btn.ok { background: var(--color-primary-rose, #d81b60); color: #fff; }
                 .confirm-btn.ok:hover { opacity: 0.85; }
             `;
             document.head.appendChild(s);
@@ -893,7 +893,7 @@ document.addEventListener('DOMContentLoaded', () => { loadPageData(); });
             #back-to-top {
                 position: fixed; right: 28px; bottom: 28px; z-index: 999;
                 width: 44px; height: 44px; border-radius: 50%;
-                background: var(--color-gradient-blue-green, linear-gradient(135deg, #1a73e8, #00b894));
+                background: var(--color-gradient-rose-navy, linear-gradient(135deg, #d81b60, #0d2b6e));
                 color: #fff; display: flex; align-items: center; justify-content: center;
                 font-size: 16px; cursor: pointer; opacity: 0; pointer-events: none;
                 transform: translateY(12px); transition: all var(--transition-normal, 0.4s ease);
@@ -924,12 +924,12 @@ document.addEventListener('DOMContentLoaded', () => { loadPageData(); });
         style.id = 'faq-accordion-style';
         style.textContent = `
             .faq-item { cursor: pointer; transition: box-shadow var(--transition-fast, 0.2s ease); }
-            .faq-item:hover { box-shadow: var(--shadow-glow-blue, 0 0 20px rgba(26,115,232,0.2)); }
+            .faq-item:hover { box-shadow: var(--shadow-glow-rose, 0 0 20px rgba(216,27,96,0.2)); }
             .faq-item .faq-q { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-            .faq-item .faq-q .faq-icon { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--color-primary-blue-light, #e3f2fd); color: var(--color-primary-blue, #1a73e8); display: flex; align-items: center; justify-content: center; font-size: 12px; transition: transform var(--transition-normal, 0.4s ease); }
+            .faq-item .faq-q .faq-icon { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--color-primary-rose-light, #fce4ec); color: var(--color-primary-rose, #d81b60); display: flex; align-items: center; justify-content: center; font-size: 12px; transition: transform var(--transition-normal, 0.4s ease); }
             .faq-item .faq-a { max-height: 0; overflow: hidden; transition: max-height var(--transition-normal, 0.4s ease), padding var(--transition-normal, 0.4s ease), margin var(--transition-normal, 0.4s ease); margin: 0; padding: 0; }
-            .faq-item.open { border-color: var(--color-primary-blue, #1a73e8); }
-            .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--color-primary-blue, #1a73e8); color: #fff; }
+            .faq-item.open { border-color: var(--color-primary-rose, #d81b60); }
+            .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--color-primary-rose, #d81b60); color: #fff; }
             .faq-item.open .faq-a { max-height: 400px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--color-card-border, #d5eae8); }
         `;
         document.head.appendChild(style);
