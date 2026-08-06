@@ -1,4 +1,4 @@
-﻿/**
+/**
  * i18n 多语言切换引擎
  * 支持: 简体中文(zh-CN), 繁体中文(zh-TW), 英文(en)
  * @version 1.1.0
@@ -927,7 +927,9 @@
     "admin.table.workType": "工作类型",
     "admin.table.school": "学校/单位",
     "admin.table.age": "年龄",
-    "admin.table.guestType": "嘉宾类型"
+    "admin.table.guestType": "嘉宾类型",
+    "mobile.overview.title": "展会概览",
+    "mobile.quick.title": "快速入口"
   };
 
   // ---- zh-TW ----
@@ -1578,7 +1580,9 @@
     "admin.table.workType": "工作類型",
     "admin.table.school": "學校/單位",
     "admin.table.age": "年齡",
-    "admin.table.guestType": "嘉賓類型"
+    "admin.table.guestType": "嘉賓類型",
+    "mobile.overview.title": "展會概覽",
+    "mobile.quick.title": "快速入口"
   };
 
   // ---- en ----
@@ -2229,7 +2233,9 @@
     "admin.table.workType": "Work Type",
     "admin.table.school": "School/Organization",
     "admin.table.age": "Age",
-    "admin.table.guestType": "Guest Type"
+    "admin.table.guestType": "Guest Type",
+    "mobile.overview.title": "Expo Overview",
+    "mobile.quick.title": "Quick Access"
   };
 
   // ---- 初始化 ----

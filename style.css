@@ -920,6 +920,12 @@ nav {
     box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
 }
 
+/* 移动端精简入口页专属区块：桌面端隐藏，≤768px 显示 */
+.mobile-overview,
+.mobile-quick-links {
+    display: none;
+}
+
 /* ============================================================
    区块通用
    ============================================================ */
@@ -2479,8 +2485,29 @@ footer::before {
     }
 
     .highlight-cards {
-        grid-template-columns: 1fr;
-        gap: 18px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .highlight-card {
+        padding: 18px 14px;
+    }
+
+    .highlight-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    .highlight-title {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+
+    .highlight-description {
+        font-size: 0.82rem;
+        line-height: 1.5;
     }
 
     .brands-grid {
@@ -2565,6 +2592,158 @@ footer::before {
     .recruit-tab {
         padding: 11px 22px;
         font-size: 0.88rem;
+    }
+
+    /* ============ 移动端精简入口页 ============ */
+
+    /* 长页版块在移动端隐藏，改由快捷入口跳转子页 */
+    #schedule,
+    #forum,
+    #brands,
+    #news,
+    #guide {
+        display: none;
+    }
+
+    /* 展会概览 */
+    .mobile-overview,
+    .mobile-quick-links {
+        display: block;
+        padding: 34px 20px 38px;
+    }
+
+    .mobile-overview {
+        background: var(--color-white);
+        border-bottom: 1px solid var(--rose-alpha-08);
+        text-align: center;
+    }
+
+    .mobile-overview-title,
+    .mobile-quick-title {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--color-text-primary);
+        letter-spacing: 0.04em;
+        text-align: center;
+        margin-bottom: 14px;
+    }
+
+    .mobile-overview-meta {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        margin-bottom: 20px;
+    }
+
+    .mobile-meta-item i {
+        color: var(--color-primary-rose);
+        margin-right: 6px;
+    }
+
+    .mobile-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .mobile-stat-item {
+        background: var(--color-card-bg);
+        border: 1px solid var(--rose-alpha-09);
+        border-radius: var(--radius-md);
+        padding: 16px 10px 14px;
+    }
+
+    .mobile-stat-value {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 900;
+        background: var(--color-gradient-rose-navy);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        line-height: 1.2;
+    }
+
+    .mobile-stat-label {
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+        margin-top: 6px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+    }
+
+    /* 快捷入口 */
+    .mobile-quick-links {
+        background-color: var(--color-light-bg);
+        background-image: radial-gradient(var(--rose-alpha-045) 1px, transparent 1px);
+        background-size: 26px 26px;
+    }
+
+    .mobile-quick-title {
+        margin-bottom: 20px;
+    }
+
+    .mobile-quick-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .mobile-quick-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px 12px 18px;
+        background: var(--color-card-bg);
+        border: 1px solid var(--rose-alpha-09);
+        border-radius: var(--radius-md);
+        color: var(--color-text-primary);
+        text-decoration: none;
+        position: relative;
+        transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .mobile-quick-card:active {
+        transform: scale(0.97);
+        box-shadow: var(--shadow-card-hover);
+    }
+
+    .mobile-quick-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--color-primary-rose-light);
+        color: var(--color-primary-rose);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+    }
+
+    .mobile-quick-name {
+        font-weight: 700;
+        font-size: 0.98rem;
+    }
+
+    .mobile-quick-arrow {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        font-size: 0.7rem;
+        color: var(--color-text-muted);
+        opacity: 0.6;
+    }
+
+    /* 页脚精简：隐藏链接列 */
+    .footer-links {
+        display: none;
     }
 }
 
