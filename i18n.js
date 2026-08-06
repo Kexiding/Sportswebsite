@@ -294,6 +294,14 @@
     "nav.recruit": "招募",
     "nav.register": "观展预约",
     "nav.recruitBtn": "人员招募",
+    "app.entry.areas": "展区分类",
+    "app.entry.schedule": "展会日程",
+    "app.entry.forum": "同期论坛",
+    "app.entry.brands": "参展品牌",
+    "app.entry.news": "展会资讯",
+    "app.entry.guide": "参展指南",
+    "app.entry.register": "观展预约",
+    "app.entry.recruit": "人员招募",
     "hero.badge": "2026 IFSIE · 首届全链赋能",
     "hero.title": "国际健身体育产业博览会",
     "hero.title.span": "",
@@ -927,9 +935,7 @@
     "admin.table.workType": "工作类型",
     "admin.table.school": "学校/单位",
     "admin.table.age": "年龄",
-    "admin.table.guestType": "嘉宾类型",
-    "mobile.overview.title": "展会概览",
-    "mobile.quick.title": "快速入口"
+    "admin.table.guestType": "嘉宾类型"
   };
 
   // ---- zh-TW ----
@@ -947,6 +953,14 @@
     "nav.recruit": "招募",
     "nav.register": "觀展預約",
     "nav.recruitBtn": "人員招募",
+    "app.entry.areas": "展區分類",
+    "app.entry.schedule": "展會日程",
+    "app.entry.forum": "同期論壇",
+    "app.entry.brands": "參展品牌",
+    "app.entry.news": "展會資訊",
+    "app.entry.guide": "參展指南",
+    "app.entry.register": "觀展預約",
+    "app.entry.recruit": "人員招募",
     "hero.badge": "2026 IFSIE · 首屆全鏈賦能",
     "hero.title": "國際健身體育產業博覽會",
     "hero.title.span": "",
@@ -1580,9 +1594,7 @@
     "admin.table.workType": "工作類型",
     "admin.table.school": "學校/單位",
     "admin.table.age": "年齡",
-    "admin.table.guestType": "嘉賓類型",
-    "mobile.overview.title": "展會概覽",
-    "mobile.quick.title": "快速入口"
+    "admin.table.guestType": "嘉賓類型"
   };
 
   // ---- en ----
@@ -1600,6 +1612,14 @@
     "nav.recruit": "Recruit",
     "nav.register": "Visit Registration",
     "nav.recruitBtn": "Join Us",
+    "app.entry.areas": "Exhibition Areas",
+    "app.entry.schedule": "Schedule",
+    "app.entry.forum": "Forums",
+    "app.entry.brands": "Exhibitors",
+    "app.entry.news": "News",
+    "app.entry.guide": "Visit Guide",
+    "app.entry.register": "Register",
+    "app.entry.recruit": "Recruit",
     "hero.badge": "2026 IFSIE · First Full-Chain Empowerment",
     "hero.title": "IFSIE",
     "hero.title.span": "",
@@ -2233,9 +2253,7 @@
     "admin.table.workType": "Work Type",
     "admin.table.school": "School/Organization",
     "admin.table.age": "Age",
-    "admin.table.guestType": "Guest Type",
-    "mobile.overview.title": "Expo Overview",
-    "mobile.quick.title": "Quick Access"
+    "admin.table.guestType": "Guest Type"
   };
 
   // ---- 初始化 ----

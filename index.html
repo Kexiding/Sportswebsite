@@ -91,33 +91,73 @@
         -->
     </section>
 
-    <section class="mobile-overview" id="mobile-overview">
-        <h2 class="mobile-overview-title" data-i18n="mobile.overview.title">展会概览</h2>
-        <div class="mobile-overview-meta">
-            <span class="mobile-meta-item"><i class="fas fa-calendar-alt"></i><span data-i18n="guide.card2.desc1">2026年10月15日-17日</span></span>
-            <span class="mobile-meta-item"><i class="fas fa-map-marker-alt"></i><span data-i18n="guide.card1.desc">国家会展中心（天津）</span></span>
+    <!-- 移动端 App 首页入口（桌面端隐藏） -->
+    <section class="app-home" id="app-home">
+        <div class="app-stats">
+            <div class="app-stat">
+                <div class="app-stat-value" data-i18n="hero.stat1.value">1200+</div>
+                <div class="app-stat-label" data-i18n="hero.stat1.label">参展企业</div>
+            </div>
+            <div class="app-stat">
+                <div class="app-stat-value" data-i18n="hero.stat2.value">4万+</div>
+                <div class="app-stat-label" data-i18n="hero.stat2.label">专业观众</div>
+            </div>
+            <div class="app-stat">
+                <div class="app-stat-value" data-i18n="hero.stat3.value">10万㎡</div>
+                <div class="app-stat-label" data-i18n="hero.stat3.label">展览面积</div>
+            </div>
+            <div class="app-stat">
+                <div class="app-stat-value" data-i18n="hero.stat4.value">20亿+</div>
+                <div class="app-stat-label" data-i18n="hero.stat4.label">意向成交额</div>
+            </div>
         </div>
-        <div class="mobile-stats">
-            <div class="mobile-stat-item">
-                <div class="mobile-stat-value hero-stat-value" data-i18n="hero.stat1.value">1200+</div>
-                <div class="mobile-stat-label hero-stat-label" data-i18n="hero.stat1.label">参展企业</div>
-            </div>
-            <div class="mobile-stat-item">
-                <div class="mobile-stat-value hero-stat-value" data-i18n="hero.stat2.value">4万+</div>
-                <div class="mobile-stat-label hero-stat-label" data-i18n="hero.stat2.label">专业观众</div>
-            </div>
-            <div class="mobile-stat-item">
-                <div class="mobile-stat-value hero-stat-value" data-i18n="hero.stat3.value">10万㎡</div>
-                <div class="mobile-stat-label hero-stat-label" data-i18n="hero.stat3.label">展览面积</div>
-            </div>
-            <div class="mobile-stat-item">
-                <div class="mobile-stat-value hero-stat-value" data-i18n="hero.stat4.value">20亿+</div>
-                <div class="mobile-stat-label hero-stat-label" data-i18n="hero.stat4.label">意向成交额</div>
-            </div>
+
+        <div class="app-entry-grid">
+            <a href="#highlights" class="app-entry" data-screen="highlights">
+                <div class="app-entry-icon"><i class="fas fa-dumbbell"></i></div>
+                <div class="app-entry-label" data-i18n="app.entry.areas">展区分类</div>
+            </a>
+            <a href="#schedule" class="app-entry" data-screen="schedule">
+                <div class="app-entry-icon"><i class="fas fa-calendar-alt"></i></div>
+                <div class="app-entry-label" data-i18n="app.entry.schedule">展会日程</div>
+            </a>
+            <a href="#forum" class="app-entry" data-screen="forum">
+                <div class="app-entry-icon"><i class="fas fa-microphone-alt"></i></div>
+                <div class="app-entry-label" data-i18n="app.entry.forum">同期论坛</div>
+            </a>
+            <a href="#brands" class="app-entry" data-screen="brands">
+                <div class="app-entry-icon"><i class="fas fa-trophy"></i></div>
+                <div class="app-entry-label" data-i18n="app.entry.brands">参展品牌</div>
+            </a>
+            <a href="#news" class="app-entry" data-screen="news">
+                <div class="app-entry-icon"><i class="fas fa-newspaper"></i></div>
+                <div class="app-entry-label" data-i18n="app.entry.news">展会资讯</div>
+            </a>
+            <a href="#guide" class="app-entry" data-screen="guide">
+                <div class="app-entry-icon"><i class="fas fa-compass"></i></div>
+                <div class="app-entry-label" data-i18n="app.entry.guide">参展指南</div>
+            </a>
+            <a href="register.html" class="app-entry app-entry-accent">
+                <div class="app-entry-icon"><i class="fas fa-ticket-alt"></i></div>
+                <div class="app-entry-label" data-i18n="app.entry.register">观展预约</div>
+            </a>
+            <a href="recruit.html" class="app-entry app-entry-accent">
+                <div class="app-entry-icon"><i class="fas fa-users"></i></div>
+                <div class="app-entry-label" data-i18n="app.entry.recruit">人员招募</div>
+            </a>
         </div>
     </section>
 
-    <section class="section section-dark" id="highlights">
+    <section class="section section-dark app-screen" id="highlights">
+        <div class="app-screen-bar">
+            <button type="button" class="app-back-btn" aria-label="返回首页"><i class="fas fa-chevron-left"></i></button>
+            <span class="app-screen-title" data-i18n="section.highlights.title">展区分类</span>
+            <div class="app-bar-lang">
+                <button type="button" class="lang-switcher-btn" data-lang="zh-CN" title="简体中文">简</button>
+                <button type="button" class="lang-switcher-btn" data-lang="zh-TW" title="繁體中文">繁</button>
+                <button type="button" class="lang-switcher-btn" data-lang="en" title="English">EN</button>
+            </div>
+        </div>
         <div class="section-header">
             <div class="section-label" data-i18n="section.highlights.label">EXHIBITION AREAS</div>
             <h2 class="section-title" data-i18n="section.highlights.title">展区分类 <span data-i18n="section.highlights.title.span">六大主题展区</span></h2>
@@ -158,43 +198,16 @@
         </div>
     </section>
 
-    <section class="mobile-quick-links" id="mobile-quick-links">
-        <h2 class="mobile-quick-title" data-i18n="mobile.quick.title">快速入口</h2>
-        <div class="mobile-quick-grid">
-            <a href="schedule.html" class="mobile-quick-card">
-                <div class="mobile-quick-icon"><i class="fas fa-calendar-alt"></i></div>
-                <div class="mobile-quick-name" data-i18n="nav.schedule">日程</div>
-                <div class="mobile-quick-arrow"><i class="fas fa-chevron-right"></i></div>
-            </a>
-            <a href="brands.html" class="mobile-quick-card">
-                <div class="mobile-quick-icon"><i class="fas fa-award"></i></div>
-                <div class="mobile-quick-name" data-i18n="nav.brands">品牌</div>
-                <div class="mobile-quick-arrow"><i class="fas fa-chevron-right"></i></div>
-            </a>
-            <a href="news.html" class="mobile-quick-card">
-                <div class="mobile-quick-icon"><i class="fas fa-newspaper"></i></div>
-                <div class="mobile-quick-name" data-i18n="nav.news">资讯</div>
-                <div class="mobile-quick-arrow"><i class="fas fa-chevron-right"></i></div>
-            </a>
-            <a href="guide.html" class="mobile-quick-card">
-                <div class="mobile-quick-icon"><i class="fas fa-map-signs"></i></div>
-                <div class="mobile-quick-name" data-i18n="nav.guide">指南</div>
-                <div class="mobile-quick-arrow"><i class="fas fa-chevron-right"></i></div>
-            </a>
-            <a href="register.html" class="mobile-quick-card">
-                <div class="mobile-quick-icon"><i class="fas fa-ticket-alt"></i></div>
-                <div class="mobile-quick-name" data-i18n="nav.register">观展预约</div>
-                <div class="mobile-quick-arrow"><i class="fas fa-chevron-right"></i></div>
-            </a>
-            <a href="recruit.html" class="mobile-quick-card">
-                <div class="mobile-quick-icon"><i class="fas fa-users"></i></div>
-                <div class="mobile-quick-name" data-i18n="nav.recruit">招募</div>
-                <div class="mobile-quick-arrow"><i class="fas fa-chevron-right"></i></div>
-            </a>
+    <section class="section section-gray app-screen" id="schedule">
+        <div class="app-screen-bar">
+            <button type="button" class="app-back-btn" aria-label="返回首页"><i class="fas fa-chevron-left"></i></button>
+            <span class="app-screen-title" data-i18n="section.schedule.title">展会日程</span>
+            <div class="app-bar-lang">
+                <button type="button" class="lang-switcher-btn" data-lang="zh-CN" title="简体中文">简</button>
+                <button type="button" class="lang-switcher-btn" data-lang="zh-TW" title="繁體中文">繁</button>
+                <button type="button" class="lang-switcher-btn" data-lang="en" title="English">EN</button>
+            </div>
         </div>
-    </section>
-
-    <section class="section section-gray" id="schedule">
         <div class="section-header">
             <div class="section-label" data-i18n="section.schedule.label">SCHEDULE</div>
             <h2 class="section-title" data-i18n="section.schedule.title">展会日程 <span data-i18n="section.schedule.title.span">分日精准排布</span></h2>
@@ -444,7 +457,16 @@
         </div>
     </section>
 
-    <section class="section section-dark" id="forum">
+    <section class="section section-dark app-screen" id="forum">
+        <div class="app-screen-bar">
+            <button type="button" class="app-back-btn" aria-label="返回首页"><i class="fas fa-chevron-left"></i></button>
+            <span class="app-screen-title" data-i18n="section.forum.title">同期论坛</span>
+            <div class="app-bar-lang">
+                <button type="button" class="lang-switcher-btn" data-lang="zh-CN" title="简体中文">简</button>
+                <button type="button" class="lang-switcher-btn" data-lang="zh-TW" title="繁體中文">繁</button>
+                <button type="button" class="lang-switcher-btn" data-lang="en" title="English">EN</button>
+            </div>
+        </div>
         <div class="section-header">
             <div class="section-label" data-i18n="section.forum.label">FORUM & SUMMIT</div>
             <h2 class="section-title" data-i18n="section.forum.title">同期论坛 <span data-i18n="section.forum.title.span">产业峰会</span></h2>
@@ -503,7 +525,16 @@
         </div>
     </section>
 
-    <section class="section section-gray" id="brands">
+    <section class="section section-gray app-screen" id="brands">
+        <div class="app-screen-bar">
+            <button type="button" class="app-back-btn" aria-label="返回首页"><i class="fas fa-chevron-left"></i></button>
+            <span class="app-screen-title" data-i18n="section.brands.title">参展品牌</span>
+            <div class="app-bar-lang">
+                <button type="button" class="lang-switcher-btn" data-lang="zh-CN" title="简体中文">简</button>
+                <button type="button" class="lang-switcher-btn" data-lang="zh-TW" title="繁體中文">繁</button>
+                <button type="button" class="lang-switcher-btn" data-lang="en" title="English">EN</button>
+            </div>
+        </div>
         <div class="section-header">
             <div class="section-label" data-i18n="section.brands.label">EXHIBITORS</div>
             <h2 class="section-title" data-i18n="section.brands.title">参展品牌 <span data-i18n="section.brands.title.span">行业领军企业</span></h2>
@@ -608,7 +639,16 @@
         </div>
     </section>
 
-    <section class="section section-dark" id="news">
+    <section class="section section-dark app-screen" id="news">
+        <div class="app-screen-bar">
+            <button type="button" class="app-back-btn" aria-label="返回首页"><i class="fas fa-chevron-left"></i></button>
+            <span class="app-screen-title" data-i18n="section.news.title">展会资讯</span>
+            <div class="app-bar-lang">
+                <button type="button" class="lang-switcher-btn" data-lang="zh-CN" title="简体中文">简</button>
+                <button type="button" class="lang-switcher-btn" data-lang="zh-TW" title="繁體中文">繁</button>
+                <button type="button" class="lang-switcher-btn" data-lang="en" title="English">EN</button>
+            </div>
+        </div>
         <div class="section-header">
             <div class="section-label" data-i18n="section.news.label">NEWS & INFO</div>
             <h2 class="section-title" data-i18n="section.news.title">展会资讯 <span data-i18n="section.news.title.span">行业动态</span></h2>
@@ -692,7 +732,16 @@
         </div>
     </section>
 
-    <section class="section section-gray" id="guide">
+    <section class="section section-gray app-screen" id="guide">
+        <div class="app-screen-bar">
+            <button type="button" class="app-back-btn" aria-label="返回首页"><i class="fas fa-chevron-left"></i></button>
+            <span class="app-screen-title" data-i18n="section.guide.title">参展指南</span>
+            <div class="app-bar-lang">
+                <button type="button" class="lang-switcher-btn" data-lang="zh-CN" title="简体中文">简</button>
+                <button type="button" class="lang-switcher-btn" data-lang="zh-TW" title="繁體中文">繁</button>
+                <button type="button" class="lang-switcher-btn" data-lang="en" title="English">EN</button>
+            </div>
+        </div>
         <div class="section-header">
             <div class="section-label" data-i18n="section.guide.label">GUIDE</div>
             <h2 class="section-title" data-i18n="section.guide.title">参展指南 <span data-i18n="section.guide.title.span">观展攻略</span></h2>

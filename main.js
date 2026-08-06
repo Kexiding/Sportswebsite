@@ -681,6 +681,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initScheduleTabs();
     initSmoothScroll();
+    initAppNavigation();
     initRegistrationForms();
     initRecruitForms();
     initRegisterGuestForm();
@@ -735,6 +736,13 @@ function initSmoothScroll() {
             if (targetId === '#') return;
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                // 移动端 App 模式：区块锚点改为打开对应 App 页面
+                if (window.matchMedia('(max-width: 768px)').matches
+                    && targetElement.classList.contains('app-screen')
+                    && window.openAppScreen) {
+                    window.openAppScreen(targetId.slice(1));
+                    return;
+                }
                 const headerHeight = 70;
                 window.scrollTo({
                     top: targetElement.offsetTop - headerHeight,
@@ -743,6 +751,94 @@ function initSmoothScroll() {
             }
         });
     });
+}
+
+// ========== 移动端 App 模式导航 ==========
+// 首页入口宫格 → 打开区块 App 页面；顶栏返回按钮/浏览器后退 → 回到首页
+function initAppNavigation() {
+    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+    const homeEl = document.querySelector('.app-home');
+
+    function openScreen(id) {
+        const screen = document.getElementById(id);
+        if (!screen || !screen.classList.contains('app-screen')) return;
+        document.body.classList.add('app-screen-open');
+        document.querySelectorAll('.app-screen.app-screen-active').forEach(s => s.classList.remove('app-screen-active'));
+        screen.classList.add('app-screen-active');
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        const hash = '#/screen/' + id;
+        if (window.location.hash !== hash) {
+            history.pushState({ screen: id }, '', hash);
+        }
+    }
+
+    function closeScreen() {
+        if (!document.body.classList.contains('app-screen-open')) return;
+        document.body.classList.remove('app-screen-open');
+        document.querySelectorAll('.app-screen.app-screen-active').forEach(s => s.classList.remove('app-screen-active'));
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        if (window.location.hash.startsWith('#/screen/')) {
+            history.pushState({ home: true }, '', window.location.pathname + window.location.search);
+        }
+    }
+
+    // 暴露给平滑滚动联动
+    window.openAppScreen = openScreen;
+    window.closeAppScreen = closeScreen;
+
+    // 入口宫格点击
+    document.querySelectorAll('.app-entry[data-screen]').forEach(entry => {
+        entry.addEventListener('click', e => {
+            e.preventDefault();
+            openScreen(entry.getAttribute('data-screen'));
+        });
+    });
+
+    // 顶栏返回按钮
+    document.querySelectorAll('.app-back-btn').forEach(btn => {
+        btn.addEventListener('click', closeScreen);
+    });
+
+    // 顶栏语言切换
+    document.querySelectorAll('.app-bar-lang .lang-switcher-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            if (lang && window.i18n) window.i18n.switchTo(lang);
+        });
+    });
+
+    // 移动端折叠菜单锚点：导航到对应 App 页面
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => {
+            if (!isMobile()) return;
+            const href = link.getAttribute('href');
+            if (href === '#home') { closeScreen(); return; }
+            const screen = document.querySelector(href);
+            if (screen && screen.classList.contains('app-screen')) {
+                openScreen(href.slice(1));
+            }
+        });
+    });
+
+    // 浏览器前进/后退
+    window.addEventListener('popstate', () => {
+        if (window.location.hash.startsWith('#/screen/')) {
+            openScreen(decodeURIComponent(window.location.hash.replace('#/screen/', '')));
+        } else {
+            closeScreen();
+        }
+    });
+
+    // 刷新后若带 App 页地址，直接恢复
+    if (window.location.hash.startsWith('#/screen/')) {
+        const id = decodeURIComponent(window.location.hash.replace('#/screen/', ''));
+        const screen = document.getElementById(id);
+        if (screen && screen.classList.contains('app-screen')) {
+            document.body.classList.add('app-screen-open');
+            screen.classList.add('app-screen-active');
+            window.scrollTo(0, 0);
+        }
+    }
 }
 
 async function fetchExhibitionData() {
