@@ -2417,6 +2417,16 @@ footer::before {
         font-size: 0.98rem;
     }
 
+    /* 主KV为1892×849横幅图：竖屏下按宽等比撑满，
+       替换默认的 min-height:100vh + contain，避免图片下方大片空白 */
+    .hero-section {
+        min-height: 0;
+        height: auto;
+        aspect-ratio: 1892 / 849;
+        background-size: 100% auto;
+        background-position: center top;
+    }
+
     .hero-content {
         padding: calc(var(--header-height) + 16px) 20px 30px;
     }
