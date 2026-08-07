@@ -212,12 +212,12 @@
             <div class="stats-row" id="stats-row">
                 <div class="stat-card">
                     <div class="stat-number" id="stat-visitor-total">0</div>
-                    <div class="stat-label" data-i18n="admin.stat.visitor">观展预约总数</div>
+                    <div class="stat-label" data-i18n="admin.stat.visitor">专业观众报名总数</div>
                     <div class="stat-sub" id="stat-visitor-today" data-i18n="admin.stat.today">今日 0</div>
                 </div>
                 <div class="stat-card blue">
                     <div class="stat-number" id="stat-exhibitor-total">0</div>
-                    <div class="stat-label" data-i18n="admin.stat.exhibitor">参展报名总数</div>
+                    <div class="stat-label" data-i18n="admin.stat.exhibitor">参展商报名总数</div>
                     <div class="stat-sub" id="stat-exhibitor-today" data-i18n="admin.stat.today">今日 0</div>
                 </div>
                 <div class="stat-card" style="border-left:3px solid var(--color-primary-rose);">
@@ -229,18 +229,18 @@
                     <div class="stat-label" data-i18n="admin.stat.volunteer">志愿者报名</div>
                 </div>
                 <div class="stat-card" style="border-left:3px solid #f57f17;">
-                    <div class="stat-number" id="stat-guest-total">0</div>
-                    <div class="stat-label" data-i18n="admin.stat.guest">嘉宾报名</div>
+                    <div class="stat-number" id="stat-attendee-total">0</div>
+                    <div class="stat-label" data-i18n="admin.stat.attendee">参会报名</div>
                 </div>
             </div>
 
             <!-- 选项卡 -->
             <div class="admin-tabs">
                 <button class="admin-tab active" data-tab="visitor" onclick="switchTab('visitor')">
-                    <i class="fas fa-users me-1"></i> <span data-i18n="admin.tab.visitor">观展预约</span> <span class="badge" id="visitor-tab-count">0</span>
+                    <i class="fas fa-users me-1"></i> <span data-i18n="admin.tab.visitor">专业观众</span> <span class="badge" id="visitor-tab-count">0</span>
                 </button>
                 <button class="admin-tab" data-tab="exhibitor" onclick="switchTab('exhibitor')">
-                    <i class="fas fa-building me-1"></i> <span data-i18n="admin.tab.exhibitor">参展报名</span> <span class="badge" id="exhibitor-tab-count">0</span>
+                    <i class="fas fa-building me-1"></i> <span data-i18n="admin.tab.exhibitor">参展商</span> <span class="badge" id="exhibitor-tab-count">0</span>
                 </button>
                 <button class="admin-tab" data-tab="staff" onclick="switchTab('staff')">
                     <i class="fas fa-hard-hat me-1"></i> <span data-i18n="admin.tab.staff">工作人员</span> <span class="badge" id="staff-tab-count">0</span>
@@ -248,12 +248,12 @@
                 <button class="admin-tab" data-tab="volunteer" onclick="switchTab('volunteer')">
                     <i class="fas fa-hands-helping me-1"></i> <span data-i18n="admin.tab.volunteer">志愿者</span> <span class="badge" id="volunteer-tab-count">0</span>
                 </button>
-                <button class="admin-tab" data-tab="guest" onclick="switchTab('guest')">
-                    <i class="fas fa-star me-1"></i> <span data-i18n="admin.tab.guest">嘉宾</span> <span class="badge" id="guest-tab-count">0</span>
+                <button class="admin-tab" data-tab="attendee" onclick="switchTab('attendee')">
+                    <i class="fas fa-users me-1"></i> <span data-i18n="admin.tab.attendee">参会</span> <span class="badge" id="attendee-tab-count">0</span>
                 </button>
             </div>
 
-            <!-- 观展预约 -->
+            <!-- 专业观众 -->
             <div class="admin-panel active" id="panel-visitor">
                 <div class="toolbar">
                     <div class="search-box">
@@ -278,7 +278,7 @@
                 </div>
             </div>
 
-            <!-- 参展报名 -->
+            <!-- 参展商 -->
             <div class="admin-panel" id="panel-exhibitor">
                 <div class="toolbar">
                     <div class="search-box">
@@ -351,27 +351,27 @@
                 </div>
             </div>
 
-            <!-- 嘉宾 -->
-            <div class="admin-panel" id="panel-guest">
+            <!-- 参会 -->
+            <div class="admin-panel" id="panel-attendee">
                 <div class="toolbar">
                     <div class="search-box">
-                        <input type="text" id="guest-search" data-i18n="admin.search.placeholder.guest" data-i18n-placeholder placeholder="搜索姓名/手机/单位..." onkeydown="if(event.key==='Enter')loadGuest(1)">
-                        <button onclick="loadGuest(1)"><i class="fas fa-search"></i></button>
+                        <input type="text" id="attendee-search" data-i18n="admin.search.placeholder.attendee" data-i18n-placeholder placeholder="搜索姓名/手机/单位..." onkeydown="if(event.key==='Enter')loadAttendee(1)">
+                        <button onclick="loadAttendee(1)"><i class="fas fa-search"></i></button>
                     </div>
-                    <span style="color:var(--color-text-muted);font-size:13px;" id="guest-total-label">共 0 条</span>
+                    <span style="color:var(--color-text-muted);font-size:13px;" id="attendee-total-label">共 0 条</span>
                 </div>
                 <div class="table-card">
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th data-i18n="admin.table.id">ID</th><th data-i18n="admin.table.name">姓名</th><th data-i18n="admin.table.phone">手机</th><th data-i18n="admin.table.company">公司</th><th data-i18n="admin.table.guestType">嘉宾类型</th><th data-i18n="admin.table.status">状态</th><th data-i18n="admin.table.submitTime">提交时间</th><th data-i18n="admin.table.action">操作</th>
+                            <th data-i18n="admin.table.id">ID</th><th data-i18n="admin.table.name">姓名</th><th data-i18n="admin.table.phone">手机</th><th data-i18n="admin.table.company">公司</th><th data-i18n="admin.table.attendeeSessions">参会场次</th><th data-i18n="admin.table.status">状态</th><th data-i18n="admin.table.submitTime">提交时间</th><th data-i18n="admin.table.action">操作</th>
                         </tr>
                     </thead>
-                    <tbody id="guest-table-body">
+                    <tbody id="attendee-table-body">
                         <tr><td colspan="8" style="text-align:center;color:var(--color-text-muted);padding:40px;" data-i18n="admin.table.noData">暂无数据</td></tr>
                     </tbody>
                 </table>
-                <div class="pagination" id="guest-pagination"></div>
+                <div class="pagination" id="attendee-pagination"></div>
                 </div>
             </div>
         </div>
@@ -391,7 +391,7 @@
         const API_BASE = window.location.origin + '/api';
         let TOKEN = localStorage.getItem('admin_token') || '';
         let currentTab = 'visitor';
-        let visitorPage = 1, exhibitorPage = 1, staffPage = 1, volunteerPage = 1, guestPage = 1;
+        let visitorPage = 1, exhibitorPage = 1, staffPage = 1, volunteerPage = 1, attendeePage = 1;
 
         function showToast(msg, type = 'success') {
             const t = document.getElementById('toast');
@@ -438,7 +438,7 @@
             await loadExhibitor(1);
             await loadStaff(1);
             await loadVolunteer(1);
-            await loadGuest(1);
+            await loadAttendee(1);
         }
 
         // 加载统计数据
@@ -449,14 +449,14 @@
                 document.getElementById('stat-exhibitor-total').textContent = res.data.exhibitorTotal;
                 document.getElementById('stat-staff-total').textContent = res.data.staffTotal || 0;
                 document.getElementById('stat-volunteer-total').textContent = res.data.volunteerTotal || 0;
-                document.getElementById('stat-guest-total').textContent = res.data.guestTotal || 0;
+                document.getElementById('stat-attendee-total').textContent = res.data.attendeeTotal || 0;
                 document.getElementById('stat-visitor-today').textContent = '今日 ' + res.data.visitorToday;
                 document.getElementById('stat-exhibitor-today').textContent = '今日 ' + res.data.exhibitorToday;
                 document.getElementById('visitor-tab-count').textContent = res.data.visitorTotal;
                 document.getElementById('exhibitor-tab-count').textContent = res.data.exhibitorTotal;
                 document.getElementById('staff-tab-count').textContent = res.data.staffTotal || 0;
                 document.getElementById('volunteer-tab-count').textContent = res.data.volunteerTotal || 0;
-                document.getElementById('guest-tab-count').textContent = res.data.guestTotal || 0;
+                document.getElementById('attendee-tab-count').textContent = res.data.attendeeTotal || 0;
             }
         }
 
@@ -467,7 +467,7 @@
             document.querySelectorAll('.admin-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + tab));
         }
 
-        // 加载观展预约
+        // 加载专业观众
         async function loadVisitor(page) {
             visitorPage = page;
             const keyword = document.getElementById('visitor-search').value;
@@ -479,7 +479,7 @@
             renderPagination('visitor-pagination', total, page, 'loadVisitor');
         }
 
-        // 渲染观展预约表格
+        // 渲染专业观众表格
         function renderVisitorTable(list) {
             const tbody = document.getElementById('visitor-table-body');
             if (!list || list.length === 0) {
@@ -511,7 +511,7 @@
             `).join('');
         }
 
-        // 加载参展报名
+        // 加载参展商
         async function loadExhibitor(page) {
             exhibitorPage = page;
             const keyword = document.getElementById('exhibitor-search').value;
@@ -523,7 +523,7 @@
             renderPagination('exhibitor-pagination', total, page, 'loadExhibitor');
         }
 
-        // 渲染参展报名表格
+        // 渲染参展商表格
         function renderExhibitorTable(list) {
             const tbody = document.getElementById('exhibitor-table-body');
             if (!list || list.length === 0) {
@@ -560,12 +560,12 @@
             const exhibitorLabels = { 1: '已提交', 2: '已联系', 3: '已签约' };
             const staffLabels = { 1: '已提交', 2: '审核通过', 3: '已上岗', 4: '已完成' };
             const volunteerLabels = { 1: '已提交', 2: '审核通过', 3: '已录用', 4: '已完成' };
-            const guestLabels = { 1: '已提交', 2: '已确认', 3: '已到会', 4: '已完成' };
+            const attendeeLabels = { 1: '已提交', 2: '已确认', 3: '已到会', 4: '已完成' };
             let label = '未知';
             if (currentTab === 'exhibitor') label = exhibitorLabels[status];
             else if (currentTab === 'staff') label = staffLabels[status];
             else if (currentTab === 'volunteer') label = volunteerLabels[status];
-            else if (currentTab === 'guest') label = guestLabels[status];
+            else if (currentTab === 'attendee') label = attendeeLabels[status];
             else label = visitorLabels[status];
             return `<span class="status-badge status-${status}">${label || '未知'}</span>`;
         }
@@ -648,43 +648,48 @@
             renderPagination('volunteer-pagination', total, page, 'loadVolunteer');
         }
 
-        // ========== 嘉宾 ==========
-        async function loadGuest(page) {
-            guestPage = page;
-            const keyword = document.getElementById('guest-search').value;
-            const res = await api('/admin/guest/list?page=' + page + '&size=15&keyword=' + encodeURIComponent(keyword));
+        // ========== 参会 ==========
+        async function loadAttendee(page) {
+            attendeePage = page;
+            const keyword = document.getElementById('attendee-search').value;
+            const res = await api('/admin/attendee/list?page=' + page + '&size=15&keyword=' + encodeURIComponent(keyword));
             if (res.code !== 1) return;
             const { list, total } = res.data;
-            document.getElementById('guest-total-label').textContent = '共 ' + total + ' 条';
-            const tbody = document.getElementById('guest-table-body');
+            document.getElementById('attendee-total-label').textContent = '共 ' + total + ' 条';
+            const tbody = document.getElementById('attendee-table-body');
             if (!list || list.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--color-text-muted);padding:40px;">暂无数据</td></tr>';
             } else {
-                tbody.innerHTML = list.map(item => `
+                tbody.innerHTML = list.map(item => {
+                    let sessions = item.sessions;
+                    try { sessions = JSON.parse(sessions); } catch (e) { }
+                    sessions = Array.isArray(sessions) ? sessions.join('、') : (sessions || '-');
+                    return `
                     <tr>
                         <td>${item.id}</td>
                         <td><strong>${item.name}</strong></td>
                         <td>${item.phone}</td>
                         <td>${item.company || '-'}</td>
-                        <td>${item.guest_type || '-'}</td>
+                        <td title="${sessions}">${sessions.length > 18 ? sessions.slice(0, 18) + '…' : sessions}</td>
                         <td>${renderStatus(item.status)}</td>
                         <td style="font-size:13px;color:var(--color-text-muted);">${item.created_at}</td>
                         <td>
                             <div class="table-actions">
-                                <button class="btn-view" onclick="viewDetail('guest',${item.id})"><i class="fas fa-eye"></i></button>
-                                <select class="status-select" onchange="updateStatus('guest',${item.id},this.value)">
+                                <button class="btn-view" onclick="viewDetail('attendee',${item.id})"><i class="fas fa-eye"></i></button>
+                                <select class="status-select" onchange="updateStatus('attendee',${item.id},this.value)">
                                     <option value="1" ${item.status==1?'selected':''}>已提交</option>
                                     <option value="2" ${item.status==2?'selected':''}>已确认</option>
                                     <option value="3" ${item.status==3?'selected':''}>已到会</option>
                                     <option value="4" ${item.status==4?'selected':''}>已完成</option>
                                 </select>
-                                <button class="btn-delete" onclick="deleteRecord('guest',${item.id})"><i class="fas fa-trash"></i></button>
+                                <button class="btn-delete" onclick="deleteRecord('attendee',${item.id})"><i class="fas fa-trash"></i></button>
                             </div>
                         </td>
                     </tr>
-                `).join('');
+                `;
+                }).join('');
             }
-            renderPagination('guest-pagination', total, page, 'loadGuest');
+            renderPagination('attendee-pagination', total, page, 'loadAttendee');
         }
 
         // 分页
@@ -710,7 +715,7 @@
             if (res.code !== 1) return showToast(res.msg, 'error');
             const d = res.data;
             const statusLabel = d.status === 1 ? '已提交' : d.status === 2 ? '已联系' : d.status === 3 ? '已完成' : '未知';
-            const titleMap = { visitor: '观展预约', exhibitor: '参展报名', staff: '工作人员', volunteer: '志愿者', guest: '嘉宾' };
+            const titleMap = { visitor: '专业观众', exhibitor: '参展商', staff: '工作人员', volunteer: '志愿者', attendee: '参会' };
             
             document.getElementById('detail-title').textContent = (titleMap[type] || type) + ' 详情 #' + d.id;
 
@@ -788,16 +793,19 @@
                     ${renderDetailItem('状态', ['已提交','审核通过','已录用','已完成'][d.status-1] || '-')}
                     ${renderDetailItem('提交时间', d.created_at)}
                 `;
-            } else if (type === 'guest') {
+            } else if (type === 'attendee') {
+                let sessions = d.sessions;
+                try { sessions = JSON.parse(sessions); } catch (e) { }
+                sessions = Array.isArray(sessions) ? sessions.join('、') : (sessions || '-');
                 html = `
                     ${renderDetailItem('姓名', d.name)}
                     ${renderDetailItem('手机', d.phone)}
                     ${renderDetailItem('邮箱', d.email)}
-                    ${renderDetailItem('所在单位', d.company)}
-                    ${renderDetailItem('职务', d.position || '-')}
-                    ${renderDetailItem('嘉宾称号', d.title || '-')}
-                    ${renderDetailItem('个人简介', d.introduction || '-', true)}
-                    ${renderDetailItem('公开展示', d.is_public ? '是' : '否')}
+                    ${renderDetailItem('所在单位', d.company || '-')}
+                    ${renderDetailItem('职位', d.position || '-')}
+                    ${renderDetailItem('所在城市', d.city || '-')}
+                    ${renderDetailItem('参会场次', sessions, true)}
+                    ${renderDetailItem('餐饮需求', d.dietary || '-')}
                     ${renderDetailItem('备注', d.remark || '-', true)}
                     ${renderDetailItem('状态', ['已提交','已确认','已到会','已完成'][d.status-1] || '-')}
                     ${renderDetailItem('提交时间', d.created_at)}
@@ -847,7 +855,7 @@
             else if (type === 'exhibitor') loadExhibitor(exhibitorPage);
             else if (type === 'staff') loadStaff(staffPage);
             else if (type === 'volunteer') loadVolunteer(volunteerPage);
-            else if (type === 'guest') loadGuest(guestPage);
+            else if (type === 'attendee') loadAttendee(attendeePage);
         }
 
         // 自动登录

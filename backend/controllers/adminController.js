@@ -6,7 +6,8 @@ const TABLE_MAP = {
   exhibitor: 'exhibitor_applications',
   staff: 'staff_registrations',
   volunteer: 'volunteer_registrations',
-  guest: 'guest_registrations'
+  guest: 'guest_registrations',
+  attendee: 'attendee_registrations'
 };
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 const JWT_SECRET = process.env.JWT_SECRET || 'zhanlt_admin_2026';
@@ -51,13 +52,14 @@ async function stats(req, res, next) {
     const [[{ staffTotal }]] = await db.execute('SELECT COUNT(*) as staffTotal FROM staff_registrations');
     const [[{ volunteerTotal }]] = await db.execute('SELECT COUNT(*) as volunteerTotal FROM volunteer_registrations');
     const [[{ guestTotal }]] = await db.execute('SELECT COUNT(*) as guestTotal FROM guest_registrations');
+    const [[{ attendeeTotal }]] = await db.execute('SELECT COUNT(*) as attendeeTotal FROM attendee_registrations');
     const [[{ visitorToday }]] = await db.execute('SELECT COUNT(*) as visitorToday FROM visitor_registrations WHERE DATE(created_at) = CURDATE()');
     const [[{ exhibitorToday }]] = await db.execute('SELECT COUNT(*) as exhibitorToday FROM exhibitor_applications WHERE DATE(created_at) = CURDATE()');
 
     res.json({
       code: 1,
       msg: 'success',
-      data: { visitorTotal, exhibitorTotal, staffTotal, volunteerTotal, guestTotal, visitorToday, exhibitorToday }
+      data: { visitorTotal, exhibitorTotal, staffTotal, volunteerTotal, guestTotal, attendeeTotal, visitorToday, exhibitorToday }
     });
   } catch (err) {
     next(err);
@@ -65,7 +67,7 @@ async function stats(req, res, next) {
 }
 
 /**
- * 获取观展预约列表
+ * 获取专业观众报名列表
  */
 async function visitorList(req, res, next) {
   try {
@@ -99,7 +101,7 @@ async function visitorList(req, res, next) {
 }
 
 /**
- * 获取参展报名列表
+ * 获取参展商报名列表
  */
 async function exhibitorList(req, res, next) {
   try {
@@ -153,6 +155,9 @@ async function detail(req, res, next) {
     }
     if (item.services) {
       try { item.services = JSON.parse(item.services); } catch (e) { }
+    }
+    if (item.sessions) {
+      try { item.sessions = JSON.parse(item.sessions); } catch (e) { }
     }
 
     res.json({ code: 1, msg: 'success', data: item });

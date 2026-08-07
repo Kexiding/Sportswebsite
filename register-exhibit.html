@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-i18n-title="register.exhibit.title">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参展商报名 | 国际健身体育产业博览会</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="loading-overlay" id="loading">
+        <div class="loading-logo">IFSIE</div>
+        <div class="loading-bar">
+            <div class="loading-bar-fill"></div>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">IFSIE</div>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="index.html" data-i18n="nav.home">首页</a>
+                    <a href="index.html#highlights" data-i18n="nav.highlights">展区</a>
+                    <a href="schedule.html" data-i18n="nav.schedule">日程</a>
+                    <a href="index.html#forum" data-i18n="nav.forum">论坛</a>
+                    <a href="brands.html" data-i18n="nav.brands">品牌</a>
+                    <a href="index.html#news" data-i18n="nav.news">资讯</a>
+                    <a href="index.html#guide" data-i18n="nav.guide">指南</a>
+                </div>
+                <div class="nav-cta">
+                    <a href="register-visitor.html" class="btn btn-secondary" data-i18n="nav.register">专业观众报名</a>
+                    <a href="register-attendee.html" class="btn btn-primary" data-i18n="nav.attendee">参会报名</a>
+                    <a href="register-exhibit.html" class="btn btn-accent active" data-i18n="nav.exhibit">参展商报名</a>
+                </div>
+            </nav>
+            <div class="burger-menu">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section hero-section--full">
+        <img src="images/主KV.jpg" alt="国际健身体育产业博览会主视觉" class="hero-bg-img">
+        <div class="hero-background">
+            <div class="hero-grid"></div>
+            <div class="hero-scan-line"></div>
+            <div class="hero-glow"></div>
+            <div class="hero-geometric"></div>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="section-header">
+            <div class="section-label" data-i18n="register.section.label">REGISTRATION</div>
+            <h2 class="section-title" data-i18n="register.section.title">在线<span data-i18n="register.exhibit.title">参展商报名</span></h2>
+            <p class="section-description" data-i18n="register.section.desc">填写以下信息完成展位申请，亮相行业盛会</p>
+        </div>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="form-container" style="position: relative;">
+                <div class="form-header">
+                    <h2 data-i18n="register.exhibit.title">参展商报名</h2>
+                    <p data-i18n="register.exhibit.desc">填写以下信息完成展位申请</p>
+                </div>
+
+                <form id="exhibit-form">
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-i18n="register.section.exhibitContact"><i class="fas fa-user"></i> 联系人信息</h3>
+
+                        <div class="form-group">
+                            <label for="exhibit-name" data-i18n="register.label.exhibitName">联系人姓名 <span style="color: var(--color-primary-rose);">*</span></label>
+                            <input type="text" id="exhibit-name" name="name" class="form-control" required placeholder="请输入联系人姓名" maxlength="50" data-i18n-placeholder="register.exhibit.placeholder.name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exhibit-phone" data-i18n="register.label.exhibitPhone">联系电话 <span style="color: var(--color-primary-rose);">*</span></label>
+                            <input type="tel" id="exhibit-phone" name="phone" class="form-control" required placeholder="请输入联系电话" maxlength="11" data-i18n-placeholder="register.exhibit.placeholder.phone" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exhibit-email" data-i18n="register.label.exhibitEmail">邮箱 <span style="color: var(--color-primary-rose);">*</span></label>
+                            <input type="email" id="exhibit-email" name="email" class="form-control" required placeholder="用于接收参展确认函和展会资料" maxlength="200" data-i18n-placeholder="register.exhibit.placeholder.email">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-i18n="register.section.exhibitInfo"><i class="fas fa-building"></i> 公司信息</h3>
+
+                        <div class="form-group">
+                            <label for="exhibit-company" data-i18n="register.label.exhibitCompany">公司名称 <span style="color: var(--color-primary-rose);">*</span></label>
+                            <input type="text" id="exhibit-company" name="company" class="form-control" required placeholder="请输入公司名称" maxlength="200" data-i18n-placeholder="register.exhibit.placeholder.company">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exhibit-brand" data-i18n="register.label.exhibitBrand">品牌名称</label>
+                            <input type="text" id="exhibit-brand" name="brand" class="form-control" placeholder="请输入参展品牌名称（如与公司名称不同）" maxlength="200" data-i18n-placeholder="register.exhibit.placeholder.brand">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exhibit-website" data-i18n="register.label.exhibitWebsite">公司网址</label>
+                            <input type="url" id="exhibit-website" name="website" class="form-control" placeholder="请输入公司官网地址" maxlength="500" data-i18n-placeholder="register.exhibit.placeholder.website">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exhibit-first" data-i18n="register.label.exhibitFirstTimer">是否首次参展</label>
+                            <select id="exhibit-first" name="isFirst" class="form-control">
+                                <option value="" data-i18n="register.placeholder.selectDefault">请选择</option>
+                                <option value="是，首次参展" data-i18n="register.option.yes">是，首次参展</option>
+                                <option value="否，往届参展商" data-i18n="register.option.no">否，往届参展商</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-i18n="register.section.exhibitDetail"><i class="fas fa-cube"></i> 展位需求</h3>
+
+                        <div class="form-group">
+                            <label for="exhibit-booth-type" data-i18n="register.label.exhibitBoothType">展位类型 <span style="color: var(--color-primary-rose);">*</span></label>
+                            <select id="exhibit-booth-type" name="boothType" class="form-control" required>
+                                <option value="" data-i18n="register.placeholder.boothType">请选择展位类型</option>
+                                <option value="标准展位（9㎡，¥10,800/个）" data-i18n="register.booth.standard">标准展位（9㎡，¥10,800/个）</option>
+                                <option value="光地展位（36㎡起，¥1,180/㎡）" data-i18n="register.booth.rawspace">光地展位（36㎡起，¥1,180/㎡）</option>
+                                <option value="优惠光地（36㎡起，¥980/㎡）" data-i18n="register.booth.discount">优惠光地（36㎡起，¥980/㎡）</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exhibit-area" data-i18n="register.label.exhibitBoothArea">展位面积 <span style="color: var(--color-primary-rose);">*</span></label>
+                            <select id="exhibit-area" name="exhibitArea" class="form-control" required>
+                                <option value="" data-i18n="register.placeholder.boothArea">请选择展位面积</option>
+                                <option value="9">9㎡</option>
+                                <option value="18">18㎡</option>
+                                <option value="36">36㎡</option>
+                                <option value="54">54㎡</option>
+                                <option value="72">72㎡</option>
+                                <option value="100">100㎡及以上</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exhibit-type" data-i18n="register.label.exhibitCategory">参展类别 <span style="color: var(--color-primary-rose);">*</span></label>
+                            <select id="exhibit-type" name="exhibitType" class="form-control" required>
+                                <option value="" data-i18n="register.placeholder.exhibitCategory">请选择参展类别</option>
+                                <option value="健身器材">健身器材</option>
+                                <option value="体育科技与智能穿戴">体育科技与智能穿戴</option>
+                                <option value="运动服饰与装备">运动服饰与装备</option>
+                                <option value="运动营养与健康食品">运动营养与健康食品</option>
+                                <option value="康养与康复设备">康养与康复设备</option>
+                                <option value="户外与极限运动">户外与极限运动</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-i18n="register.section.services"><i class="fas fa-plug"></i> 增值服务</h3>
+
+                        <div class="form-group">
+                            <label data-i18n="register.label.services">所需增值服务（可多选）</label>
+                            <div class="form-check-group">
+                                <label class="form-check-label">
+                                    <input type="checkbox" name="services" value="额外电力" class="form-check-input">
+                                    <span data-i18n="register.service.extraPower">额外电力</span>
+                                </label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" name="services" value="网络服务" class="form-check-input">
+                                    <span data-i18n="register.service.network">网络服务</span>
+                                </label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" name="services" value="压缩空气" class="form-check-input">
+                                    <span data-i18n="register.service.compressedAir">压缩空气</span>
+                                </label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" name="services" value="吊点服务" class="form-check-input">
+                                    <span data-i18n="register.service.hoisting">吊点服务</span>
+                                </label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" name="services" value="给排水" class="form-check-input">
+                                    <span data-i18n="register.service.waterDrainage">给排水</span>
+                                </label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" name="services" value="特装清洁" class="form-check-input">
+                                    <span data-i18n="register.service.cleaning">特装清洁</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title" data-i18n="register.section.supplement"><i class="fas fa-file-text"></i> 补充信息</h3>
+
+                        <div class="form-group">
+                            <label for="exhibit-products" data-i18n="register.label.exhibitProducts">主营产品</label>
+                            <textarea id="exhibit-products" name="products" class="form-control" placeholder="请简要描述贵公司的主营产品" maxlength="1000" data-i18n-placeholder="register.exhibit.placeholder.products"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exhibit-booth" data-i18n="register.label.exhibitBooth">展位需求</label>
+                            <textarea id="exhibit-booth" name="boothRequirements" class="form-control" placeholder="请描述您对展位的特殊需求（如位置偏好、装修要求等）" maxlength="1000" data-i18n-placeholder="register.exhibit.placeholder.booth"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-accent" data-i18n="register.submit.exhibit">提交申请</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon"></div>
+                        <div class="logo-text">IFSIE</div>
+                    </div>
+                    <p data-i18n="footer.desc">国际健身体育产业博览会（IFSIE 2026）立足京津冀、辐射环渤海，10万㎡展示面积汇聚1200+参展企业，打造健身器材、体育科技、运动服饰、运动营养、康养康复、户外极限全产业链商贸平台。</p>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item"><i class="fas fa-phone"></i> <span data-i18n="footer.phone">15823628384</span></div>
+                        <div class="footer-contact-item"><i class="fas fa-envelope"></i> <span data-i18n="footer.email">info@ifsie.com</span></div>
+                        <div class="footer-contact-item"><i class="fas fa-map-marker"></i> <span data-i18n="footer.address">天津市津南区国展大道888号</span></div>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.title1">展会信息</h4>
+                    <a href="index.html" data-i18n="footer.link.overview">展会概况</a>
+                    <a href="index.html#highlights" data-i18n="footer.link.planning">展区规划</a>
+                    <a href="schedule.html" data-i18n="footer.link.schedule">展会日程</a>
+                    <a href="index.html#forum" data-i18n="footer.link.events">同期活动</a>
+                    <a href="brands.html" data-i18n="footer.link.brands">参展品牌</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.title2">参展服务</h4>
+                    <a href="register-exhibit.html" data-i18n="footer.link.booth">展位申请</a>
+                    <a href="cooperation.html#sponsor" data-i18n="footer.link.sponsor">赞助合作</a>
+                    <a href="cooperation.html#advertise" data-i18n="footer.link.advertise">广告投放</a>
+                    <a href="cooperation.html#media" data-i18n="footer.link.media">媒体合作</a>
+                    <a href="cooperation.html#download" data-i18n="footer.link.download">资料下载</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.title3">观展服务</h4>
+                    <a href="register-visitor.html" data-i18n="footer.link.register">在线报名</a>
+                    <a href="index.html#guide" data-i18n="footer.link.visitGuide">观展指南</a>
+                    <a href="guide.html#transport" data-i18n="footer.link.transport">交通指引</a>
+                    <a href="guide.html#hotel" data-i18n="footer.link.hotel">住宿推荐</a>
+                    <a href="guide.html#faq" data-i18n="footer.link.faq">常见问题</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.title4">加入我们</h4>
+                    <a href="register-attendee.html#staff" data-i18n="recruit.tab.staff">工作人员</a>
+                    <a href="register-attendee.html#volunteer" data-i18n="recruit.tab.volunteer">志愿者</a>
+                    <a href="register-attendee.html#guest" data-i18n="recruit.tab.guest">嘉宾</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright" data-i18n="footer.copyright">© 2026 国际健身体育产业博览会 版权所有 | 津ICP备2026010132号-1</div>
+                <div class="footer-partners">
+                    <span data-i18n="footer.hostOrg">主办单位</span>
+                    <span data-i18n="footer.coOrg">协办单位</span>
+                    <span data-i18n="footer.supportOrg">支持单位</span>
+                </div>
+                <div style="text-align:center;margin-top:12px;">
+                    <a href="admin.html" style="color:var(--color-text-muted);font-size:12px;opacity:0.5;text-decoration:none;">后台管理</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    <script src="i18n.js"></script>
+</body>
+</html>

@@ -347,7 +347,7 @@ function showContractDownloadModal() {
             </div>
             <div class="contract-modal-title">参展合同模板</div>
             <div class="contract-modal-desc">
-                恭喜您已成功提交参展报名信息！<br>
+                恭喜您已成功提交参展商报名信息！<br>
                 是否立即下载参展合同模板？
             </div>
             <div class="contract-modal-actions">
@@ -403,8 +403,8 @@ async function handleFormSubmit(form, type) {
     
     // 确认对话框
     const confirmMsg = type === 'visitor'
-        ? `确认提交观展预约？\n姓名：${escapeHtml(data.name)}\n手机：${data.phone}`
-        : `确认提交参展报名？\n联系人：${escapeHtml(data.name)}\n手机：${data.phone}`;
+        ? `确认提交专业观众报名？\n姓名：${escapeHtml(data.name)}\n手机：${data.phone}`
+        : `确认提交参展商报名？\n联系人：${escapeHtml(data.name)}\n手机：${data.phone}`;
     
     const confirmed = await showConfirm(confirmMsg);
     if (!confirmed) return;
@@ -430,7 +430,7 @@ async function handleFormSubmit(form, type) {
             form.querySelectorAll('.form-control').forEach(el => {
                 el.classList.remove('success', 'error');
             });
-            // 参展报名成功后，弹出合同下载提示
+            // 参展商报名成功后，弹出合同下载提示
             if (type === 'exhibit') {
                 setTimeout(showContractDownloadModal, 800);
             }
@@ -505,7 +505,8 @@ const RECRUIT_VALIDATORS = {
 const API_ROUTE_MAP = {
   staff: '/registration/staff/apply',
   volunteer: '/registration/volunteer/apply',
-  guest: '/registration/guest/apply'
+  guest: '/registration/guest/apply',
+  attendee: '/registration/attendee/apply'
 };
 
 async function handleRecruitFormSubmit(form, type) {
@@ -516,7 +517,7 @@ async function handleRecruitFormSubmit(form, type) {
   const data = {};
   formData.forEach((value, key) => {
     const v = typeof value === 'string' ? value.trim() : value;
-    if (key === 'serviceType' || key === 'availableDates') {
+    if (key === 'serviceType' || key === 'availableDates' || key === 'sessions') {
       data[key] = data[key] || [];
       data[key].push(v);
     } else if (key === 'isPublic') {
@@ -539,7 +540,13 @@ async function handleRecruitFormSubmit(form, type) {
   });
   if (firstError) return showError('请填写所有必填项');
 
-  const confirmed = await showConfirm(`确认提交${type === 'staff' ? '工作人员' : type === 'volunteer' ? '志愿者' : '嘉宾'}报名？`);
+  // 参会场次至少选择一场
+  if (type === 'attendee' && (!data.sessions || data.sessions.length === 0)) {
+    return showError('请至少选择一场参会场次');
+  }
+
+  const typeName = type === 'staff' ? '工作人员' : type === 'volunteer' ? '志愿者' : type === 'guest' ? '嘉宾' : '参会';
+  const confirmed = await showConfirm(`确认提交${typeName}报名？`);
   if (!confirmed) return;
 
   SUBMITTING[formId] = true;
@@ -587,7 +594,7 @@ function initRecruitForms() {
     }
   });
 
-  // 招募类型切换
+  // 招募类型切换（工作人员 / 志愿者 / 嘉宾 / 参会）
   const tabs = document.querySelectorAll('.recruit-tab');
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -599,28 +606,48 @@ function initRecruitForms() {
       if (section) section.classList.add('active');
     });
   });
+
+  // URL hash 直达对应子分类（register-attendee.html#staff / #volunteer / #guest / #attendee）
+  const recruitTabMap = { staff: 'staff', volunteer: 'volunteer', guest: 'guest', attendee: 'attendee' };
+  const applyRecruitHash = () => {
+    const target = recruitTabMap[window.location.hash.replace('#', '')];
+    if (!target || !tabs.length) return;
+    tabs.forEach(t => t.classList.remove('active'));
+    const activeTab = Array.from(tabs).find(t => t.getAttribute('data-target') === target);
+    if (activeTab) activeTab.classList.add('active');
+    document.querySelectorAll('.recruit-section').forEach(s => s.classList.remove('active'));
+    const section = document.getElementById(`section-${target}`);
+    if (section) section.classList.add('active');
+    const tabsWrap = document.querySelector('.recruit-tabs');
+    if (tabsWrap && !document.body.classList.contains('app-screen-open')) {
+      tabsWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+  applyRecruitHash();
+  window.addEventListener('hashchange', applyRecruitHash);
 }
 
-// ========== register.html 嘉宾表单处理 ==========
-function initRegisterGuestForm() {
-  const guestForm = document.getElementById('register-guest-form');
-  if (guestForm) {
-    guestForm.addEventListener('submit', async (e) => {
+// ========== register-attendee.html 参会表单处理 ==========
+function initRegisterAttendeeForm() {
+  const attendeeForm = document.getElementById('register-attendee-form');
+  if (attendeeForm) {
+    attendeeForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      await handleRecruitFormSubmit(guestForm, 'guest');
+      await handleRecruitFormSubmit(attendeeForm, 'attendee');
     });
   }
 
-  // register.html Tab 切换 (.register-tab / .register-section)
-  const registerTabs = document.querySelectorAll('.register-tab');
-  registerTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.getAttribute('data-target');
-      registerTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      document.querySelectorAll('.register-section').forEach(s => s.classList.remove('active'));
-      const section = document.getElementById(target);
-      if (section) section.classList.add('active');
+  // 参会场次：勾选"全部场次"时全选，取消任一单场时取消"全部场次"
+  const allSessions = document.getElementById('attendee-session-all');
+  const sessionBoxes = attendeeForm ? Array.from(attendeeForm.querySelectorAll('input[name="sessions"]')) : [];
+  if (allSessions) {
+    allSessions.addEventListener('change', () => {
+      sessionBoxes.forEach(cb => { cb.checked = allSessions.checked; });
+    });
+  }
+  sessionBoxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      if (allSessions && allSessions.checked) allSessions.checked = false;
     });
   });
 }
@@ -684,7 +711,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAppNavigation();
     initRegistrationForms();
     initRecruitForms();
-    initRegisterGuestForm();
+    initRegisterAttendeeForm();
     initRevealAnimation();
 });
 

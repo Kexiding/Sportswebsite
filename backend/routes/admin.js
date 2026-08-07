@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const admin = require('../controllers/adminController');
 const reg = require('../controllers/registrationController');
+const attendee = require('../controllers/attendeeController');
 
 // 登录（不需要 token）
 router.post('/login', admin.login);
@@ -12,18 +13,19 @@ router.use(admin.authMiddleware);
 // 统计数据
 router.get('/stats', admin.stats);
 
-// 观展预约管理
+// 专业观众报名管理
 router.get('/visitor/list', admin.visitorList);
 
-// 参展报名管理
+// 参展商报名管理
 router.get('/exhibitor/list', admin.exhibitorList);
 
-// 工作人员/志愿者/嘉宾管理
+// 工作人员/志愿者/嘉宾/参会管理
 router.get('/staff/list', (req, res, next) => { req.params.type = 'staff'; reg.getList(req, res, next); });
 router.get('/volunteer/list', (req, res, next) => { req.params.type = 'volunteer'; reg.getList(req, res, next); });
 router.get('/guest/list', (req, res, next) => { req.params.type = 'guest'; reg.getList(req, res, next); });
+router.get('/attendee/list', attendee.getList);
 
-// 通用管理（type 参数: visitor / exhibitor / staff / volunteer / guest）
+// 通用管理（type 参数: visitor / exhibitor / staff / volunteer / guest / attendee）
 router.get('/:type/detail/:id', admin.detail);
 router.put('/:type/status/:id', admin.updateStatus);
 router.delete('/:type/delete/:id', admin.remove);

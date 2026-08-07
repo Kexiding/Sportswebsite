@@ -1,7 +1,7 @@
 const db = require('../config/db');
 
 /**
- * 参展报名 - 提交
+ * 参展商报名 - 提交
  */
 async function apply(req, res, next) {
   try {
@@ -44,7 +44,7 @@ async function apply(req, res, next) {
 
     res.json({
       code: 1,
-      msg: '参展报名成功！组委会将在3个工作日内联系您',
+      msg: '参展商报名成功！组委会将在3个工作日内联系您',
       data: { id: result.insertId }
     });
   } catch (err) {
@@ -53,7 +53,7 @@ async function apply(req, res, next) {
 }
 
 /**
- * 参展报名 - 获取列表 (管理用)
+ * 参展商报名 - 获取列表 (管理用)
  */
 async function getList(req, res, next) {
   try {

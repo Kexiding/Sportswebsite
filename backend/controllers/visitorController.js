@@ -1,7 +1,7 @@
 const db = require('../config/db');
 
 /**
- * 观展预约 - 提交
+ * 专业观众报名 - 提交
  */
 async function register(req, res, next) {
   try {
@@ -44,7 +44,7 @@ async function register(req, res, next) {
 
     res.json({
       code: 1,
-      msg: '观展预约成功！',
+      msg: '专业观众报名成功！组委会将为您准备入场凭证',
       data: { id: result.insertId }
     });
   } catch (err) {
@@ -53,7 +53,7 @@ async function register(req, res, next) {
 }
 
 /**
- * 观展预约 - 获取列表 (管理用)
+ * 专业观众报名 - 获取列表 (管理用)
  */
 async function getList(req, res, next) {
   try {

@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS `zhanlt_expo` DEFAULT CHARACTER SET utf8mb4 COLLAT
 
 USE `zhanlt_expo`;
 
--- 1. 观展预约表
+-- 1. 专业观众报名表
 CREATE TABLE IF NOT EXISTS `visitor_registrations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL COMMENT '姓名',
@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS `visitor_registrations` (
   PRIMARY KEY (`id`),
   KEY `idx_phone` (`phone`),
   KEY `idx_created_at` (`created_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='观展预约登记表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='专业观众报名登记表';
 
--- 2. 参展报名表
+-- 2. 参展商报名表
 CREATE TABLE IF NOT EXISTS `exhibitor_applications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contact_name` varchar(100) NOT NULL COMMENT '联系人姓名',
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `exhibitor_applications` (
   PRIMARY KEY (`id`),
   KEY `idx_phone` (`phone`),
   KEY `idx_created_at` (`created_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='参展报名登记表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='参展商报名登记表';
 
 -- 3. 工作人员报名表
 CREATE TABLE IF NOT EXISTS `staff_registrations` (
@@ -121,3 +121,23 @@ CREATE TABLE IF NOT EXISTS `guest_registrations` (
   KEY `idx_phone` (`phone`),
   KEY `idx_created_at` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='嘉宾报名登记表';
+
+-- 6. 参会报名表
+CREATE TABLE IF NOT EXISTS `attendee_registrations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL COMMENT '姓名',
+  `phone` varchar(20) NOT NULL COMMENT '手机号',
+  `email` varchar(200) NOT NULL COMMENT '邮箱',
+  `company` varchar(255) DEFAULT NULL COMMENT '所在单位',
+  `position` varchar(100) DEFAULT NULL COMMENT '职位',
+  `city` varchar(100) DEFAULT NULL COMMENT '所在城市',
+  `sessions` text COMMENT '参会场次(JSON数组)',
+  `dietary` varchar(50) DEFAULT NULL COMMENT '餐饮需求',
+  `remark` text COMMENT '备注',
+  `status` tinyint(1) DEFAULT '1' COMMENT '状态：1=已提交, 2=已确认, 3=已到会, 4=已完成',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_phone` (`phone`),
+  KEY `idx_created_at` (`created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='参会报名登记表';
